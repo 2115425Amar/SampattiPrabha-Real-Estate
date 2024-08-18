@@ -6,8 +6,8 @@ import authRoute from "./routes/auth.route.js"
 app.use(express.json());
 
 // app.use('/',(req,res)=>{
-//     res.send(`asdfghjsdfghj`);
-// })
+//     res.send(`THIS IS HOMEPAGE`);
+// });
 
 app.use("/api/posts",postRoute);
 app.use("/api/auth", authRoute);
