@@ -24,7 +24,7 @@ export const register = async (req, res) => {
 
         //HASH THE PASSWORD
         const hashedPassword = await bcrypt.hash(password, 10);
-        
+
         console.log(hashedPassword);
 
         const newUser = await prisma.user.create({
@@ -139,5 +139,10 @@ export const login = async (req, res) => {
 
 
 export const logout = (req, res) => {
-    console.log(`asdfghjsdfghj`);
-}
+    // console.log(`asdfghjsdfghj`);
+    res.clearCookie("token")
+    .status(200)
+    .json({
+        message: "Logout Successful"
+    })
+};
