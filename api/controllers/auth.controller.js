@@ -50,8 +50,6 @@ export const register = async (req, res) => {
 
 
 
-
-
 export const login = async (req, res) => {
     //console.log(`asdfghjsdfghj`);
     const {username,password} = req.body;
@@ -86,7 +84,7 @@ export const login = async (req, res) => {
         // }
          const payload = {
             id : user._id,
-            isAdmin : false,
+            isAdmin : true,
         }
 
 
