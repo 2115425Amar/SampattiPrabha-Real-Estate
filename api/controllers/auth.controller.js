@@ -77,15 +77,13 @@ export const login = async (req, res) => {
             });
         }
 
-        // const payload = {
-        //     username : user.username,
+       
+        //  const payload = {
         //     id : user._id,
-        //     role:user.role,
+        //     isAdmin : true,
         // }
-         const payload = {
-            id : user._id,
-            isAdmin : true,
-        }
+        // console.log("id aya kya");
+        // console.log(payload.id);
 
 
         //verify password and generate a JWT taken
@@ -93,7 +91,10 @@ export const login = async (req, res) => {
             
             //password matched
             let token = jwt.sign(
-                payload, 
+                {
+                    id : user._id,
+                    isAdmin : true,
+                }, 
                 process.env.JWT_SECRET,
                 {
                     expiresIn:"2h",
