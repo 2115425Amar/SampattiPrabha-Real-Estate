@@ -6,7 +6,6 @@ export const register = async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
-
         const existingUser = await prisma.user.findUnique({
             where:{username},
         });
@@ -88,7 +87,6 @@ export const login = async (req, res) => {
 
         //verify password and generate a JWT taken
         if(await bcrypt.compare(password, user.password)){
-            
             //password matched
             let token = jwt.sign(
                 {
@@ -112,9 +110,7 @@ export const login = async (req, res) => {
             }
 
             res.cookie("token", token , options)
-            .status(200).json({
-                userInfo
-            });
+            .status(200).json(userInfo);
         }
         else{
             //password does not found
