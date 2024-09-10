@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
+import {AuthContext} from "../../context/AuthContext"
 import "./ProfilePage.scss";
+import { useNavigate } from "react-router-dom";
+import apiRequest from "../../lib/apiRequest";
 
 function ProfilePage() {
+
+
+  const {updateUser, currentUser} = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  
+  const handleLogout = async () => {
+    try{
+      await apiRequest.post("/auth/logout");
+      updateUser(null);
+      localStorage.removeItem("user");
+      navigate("/");
+    }catch(err){
+      console.log(err);
+    }
+  }
+
   return (
     <div className="profilePage">
       <div className="details">
@@ -16,16 +36,19 @@ function ProfilePage() {
             <span>
               Avatar:
               <img
-                src="https://c.ndtvimg.com/2021-10/nn6emufo_ms-dhoni-ipl_650x400_07_October_21.jpg?im=FeatureCrop,algorithm=dnn,width=806,height=605"
+                src={currentUser.avatar || "noavatar.jpg"}
                 alt=""
               />
             </span>
             <span>
-              Username: <b>M.S. Dhoni</b>
+              Username: <b>{currentUser.username}</b>
             </span>
             <span>
-              E-mail: <b>thala07@gmail.com</b>
+              E-mail: <b>{currentUser.email}</b>
             </span>
+            {/* ---------------- */}
+            <button onClick={handleLogout}>Logout</button>
+            {/* ---------------- */}
           </div>
           <div className="title">
             <h1>My List</h1>

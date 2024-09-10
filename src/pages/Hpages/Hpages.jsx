@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./Hpages.scss"
 import SearchBar from '../../components/searchBar/SearchBar'
+import { AuthContext } from '../../context/AuthContext';
 
 function Hpages() {
+
+  const {currentUser} = useContext(AuthContext);
+  
+  console.log(currentUser);
   return (
     <div className='Hpages'>
       <div className="textContainer">
