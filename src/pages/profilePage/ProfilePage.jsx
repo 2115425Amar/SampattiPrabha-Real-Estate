@@ -3,7 +3,7 @@ import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
 import {AuthContext} from "../../context/AuthContext"
 import "./ProfilePage.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 
 function ProfilePage() {
@@ -12,7 +12,7 @@ function ProfilePage() {
   const {updateUser, currentUser} = useContext(AuthContext);
 
   const navigate = useNavigate();
-  
+   
   const handleLogout = async () => {
     try{
       await apiRequest.post("/auth/logout");
@@ -30,13 +30,15 @@ function ProfilePage() {
         <div className="wrapper">
           <div className="title">
             <h1>User Information</h1>
+            <Link to="/profile/update">
             <button>Update Profile</button>
+            </Link>
           </div>
           <div className="info">
             <span>
               Avatar:
               <img
-                src={currentUser.avatar || "noavatar.jpg"}
+                src={currentUser.avatar || "noavatar.jpeg"}
                 alt=""
               />
             </span>

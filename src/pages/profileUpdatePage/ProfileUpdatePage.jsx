@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./ProfileUpdatePage.scss";
+import { AuthContext } from "../../context/AuthContext";
+import apiRequest from "../../lib/apiRequest";
+import { useNavigate } from "react-router-dom";
+import CloudinaryUploadWidget from "../../components/uploadWidget/UploadWidget";
 
 function ProfileUpdatePage() {
+  const [error, setError] = useState("");
+  // const {updateUser, currentUser} = useContext(AuthContext);
+  const {currentUser, updateUser} = useContext(AuthContext);
+  const [avatar, setAvatar] = useState(currentUser.avatar);
+
+  const navigate = useNavigate();
+
+  const handleSumit = async (e) =>{
+    e.preventDefault()
+    const formData = new FormData(e.target)
+
+    const {username, email, password, avatar}=Object.fromEntries(FormData);
+
+    try{
+      const res = apiRequest.put(`/users/${currentUser.id}`,{
+        username,
+        email,
+        password,
+        avatar,
+      });
+      updateUser(res.data);
+      navigate("/profile");
+      // console.log(res.data);
+    }catch(err){
+      console.log(err)
+      setError(err.response.data.message);
+    }
+  }
+
+
   return (
     <div className="profileUpdatePage">
       <div className="formContainer">
@@ -13,6 +47,7 @@ function ProfileUpdatePage() {
               id="username"
               name="username"
               type="text"
+              defaultValue={currentUser.username}
             />
           </div>
           <div className="item">
@@ -21,6 +56,7 @@ function ProfileUpdatePage() {
               id="email"
               name="email"
               type="email"
+              defaultValue={currentUser.email}
             />
           </div>
           <div className="item">
@@ -28,10 +64,20 @@ function ProfileUpdatePage() {
             <input id="password" name="password" type="password" />
           </div>
           <button>Update</button>
+          {error && <span>error</span>}
         </form>
       </div>
       <div className="sideContainer">
-        <img src="" alt="" className="avatar" />
+        <img src={ avatar || "/noavatar.jpeg"} alt="" className="avatar" />
+        <CloudinaryUploadWidget uwConfig={{
+          cloudName : "lamadev",
+          uploadPreset:"estate",
+          multiple:false,
+          maxImageFileSize:2000000,
+          folder:"avatars",
+        }}
+        setAvatar={setAvatar}
+        />
       </div>
     </div>
   );
