@@ -49,7 +49,6 @@ export const register = async (req, res) => {
 }
 
 
-
 export const login = async (req, res) => {
     //console.log(`asdfghjsdfghj`);
     const {username,password} = req.body;
@@ -75,7 +74,6 @@ export const login = async (req, res) => {
                 message:"User is not registered",
             });
         }
-
        
         //  const payload = {
         //     id : user._id,
@@ -130,8 +128,6 @@ export const login = async (req, res) => {
         })
     }
 }
-
-
 
 export const logout = (req, res) => {
     // console.log(`asdfghjsdfghj`);
