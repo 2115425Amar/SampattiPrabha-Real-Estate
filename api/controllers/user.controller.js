@@ -34,9 +34,9 @@ export const updateUser = async (req, res)=>{
      //const body = req.body;
     const {password ,avatar, ...inputs } = req.body;
 
-    // if(id !== tokenUserId){
-    //     return res.status(403).json({message: "Not Authorized"});
-    // }
+    if(id !== tokenUserId){
+        return res.status(403).json({message: "Not Authorized"});
+    }
     let updatedPassword = null;
     try{
         if(password){
@@ -69,9 +69,9 @@ export const deleteUser = async (req, res)=>{
         console.log(id, tokenUserId);
          //const body = req.body;
 
-    // if(id !== tokenUserId){
-    //     return res.status(403).json({message: "Not Authorized"});
-    // }
+    if(id !== tokenUserId){
+        return res.status(403).json({message: "Not Authorized"});
+    }
     try{
         await prisma.user.delete({
             where:{id}
