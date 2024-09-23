@@ -3,9 +3,13 @@ import "./SinglePage.scss"
 import Slider from "../../components/slider/Slider"
 import Map from "../../components/map/Map"
 import { singlePostData, userData } from "../../lib/Dummydata"
+// import { useLoaderData } from "react-router-dom"
 
 function SinglePage() {
   return (
+    // const post = useLoaderData();
+    // console.log(post);
+
     <div className="singlePage">
       <div className="details">
         <div className="wrapper">

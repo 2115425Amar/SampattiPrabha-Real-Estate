@@ -12,6 +12,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/Register/Register";
 import ProfileUpdatePage from "./pages/profileUpdatePage/ProfileUpdatePage";
 import NewPostPage from "./pages/newPostPage/NewPostPage";
+import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
 
 function App() {
 
@@ -26,12 +27,16 @@ function App() {
         },
         {
           path:"/list",
-          element:<ListPage/>
+          element:<ListPage/>,
+          loader: listPageLoader,
         },
+        // In a React application using react-router-dom, loaders are functions that run before rendering a route.
         {
           path:"/:id",
-          element:<SinglePage/>
+          element:<SinglePage/>,
+          loader: singlePageLoader,
         },
+        // Jab singlePageLoader se data mil jaata hai, tab SinglePage component ko render kiya jaata hai.
         {
           path:"/login",
           element:<Login/>
@@ -48,7 +53,8 @@ function App() {
       children:[
         {
           path:"/profile",
-          element:<ProfilePage/>
+          element:<ProfilePage/>,
+          // loader: profilePageLoader,
         },
         {
           path:"/profile/update",
