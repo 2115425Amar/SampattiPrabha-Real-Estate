@@ -79,6 +79,7 @@ model SavedPost{
 
   @@unique([userId, postId])
 }
+
 model User {
   id        String @id @default(auto()) @map("_id") @db.ObjectId
   username  String @unique
