@@ -51,8 +51,8 @@ function NewPostPage() {
       console.log(res);
 
     }catch(err){
-      console.log(error);
-      setError(error);
+      console.log(err);
+      setError(err);
     }
   }
 
@@ -166,9 +166,9 @@ function NewPostPage() {
 
       <div className="sideContainer">
         {
-          images.map((image, index)=>{
+          images.map((image, index)=>(
             <img src={image} key={index} alt="" />
-          })
+          ))
         }
       <CloudinaryUploadWidget uwConfig={{
           multiple:true,
