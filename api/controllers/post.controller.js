@@ -90,6 +90,7 @@ const verifyToken = (token) => {
     });
 };
 
+
 export const getPost = async (req, res) => {
     const id = req.params.id;
     try {
@@ -134,6 +135,8 @@ export const getPost = async (req, res) => {
     }
 };
 // --------------------------------------------------
+
+
 
 export const addPost = async (req, res) =>{
     const body = req.body;
