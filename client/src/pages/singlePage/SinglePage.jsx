@@ -1,16 +1,35 @@
-import React from "react"
-import "./SinglePage.scss"
-import Slider from "../../components/slider/Slider"
-import Map from "../../components/map/Map"
+import React, { useContext, useState } from "react";
+import "./SinglePage.scss";
+import Slider from "../../components/slider/Slider";
+import Map from "../../components/map/Map";
 // import { post, userData } from "../../lib/Dummydata"
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import DOMPurify from "dompurify";
+import { AuthContext } from "../../context/AuthContext";
+import apiRequest from "../../lib/apiRequest";
 
 function SinglePage() {
-    const post = useLoaderData();
-    console.log(post);
-  return (
+  const post = useLoaderData();
+  const [saved, setSaved] = useState(post.isSaved);
+  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
+  const handleSave = async () => {
+    if (!currentUser) {
+      navigate("/login");
+    }
+    // AFTER REACT 19 UPDATE TO USEOPTIMISTIK HOOK
+    setSaved((prev) => !prev);
+    try {
+      await apiRequest.post("/users/save", { postId: post.id });
+    } catch (err) {
+      console.log(err);
+      setSaved((prev) => !prev);
+    }
+  };
+
+  console.log(post);
+  return (
     <div className="singlePage">
       <div className="details">
         <div className="wrapper">
@@ -23,7 +42,7 @@ function SinglePage() {
                   <img src="/pin.png" alt="" />
                   <span>{post.address}</span>
                 </div>
-                <div className="price">$ {post.price}</div>
+                <div className="price">₹ {post.price}</div>
               </div>
               <div className="user">
                 <img src={post.user.avatar} alt="" />
@@ -49,13 +68,11 @@ function SinglePage() {
               <div className="featureText">
                 <span>Utilities</span>
                 {/* <p>Renter is responsible</p> */}
-                {
-                  post.postDetail.utilities === "owner" ? (
-                    <p>Owner is responsible</p>
-                  ):(
-                    <p>Tenant is responsible</p>
-                  )
-                }
+                {post.postDetail.utilities === "owner" ? (
+                  <p>Owner is responsible</p>
+                ) : (
+                  <p>Tenant is responsible</p>
+                )}
               </div>
             </div>
             <div className="feature">
@@ -63,14 +80,11 @@ function SinglePage() {
               <div className="featureText">
                 <span>Pet Policy</span>
                 {/* <p>Pets Allowed</p> */}
-                {
-                  post.postDetail.pet === "allowed" ? (
-                    <p>Pets Allowed</p>
-                  ):(
-                    <p>Pets Not Allowed</p>
-                  )
-                }
-
+                {post.postDetail.pet === "allowed" ? (
+                  <p>Pets Allowed</p>
+                ) : (
+                  <p>Pets Not Allowed</p>
+                )}
               </div>
             </div>
             <div className="feature">
@@ -86,15 +100,21 @@ function SinglePage() {
           <div className="sizes">
             <div className="size">
               <img src="/size.png" alt="" />
-              <span><p>{post.postDetail.size}</p></span>
+              <span>
+                <p>{post.postDetail.size}</p>
+              </span>
             </div>
             <div className="size">
               <img src="/bed.png" alt="" />
-              <span><p>{post.bedroom}</p></span>
+              <span>
+                <p>{post.bedroom}</p>
+              </span>
             </div>
             <div className="size">
               <img src="/bath.png" alt="" />
-              <span><p>{post.bathroom}</p></span>
+              <span>
+                <p>{post.bathroom}</p>
+              </span>
             </div>
           </div>
           <p className="title">Nearby Places</p>
@@ -135,15 +155,21 @@ function SinglePage() {
               <img src="/chat.png" alt="" />
               Send a Message
             </button>
-            <button>
+
+            <button
+              onClick={handleSave}
+              style={{
+                backgroundColor: saved ? "#fece51" : "white",
+              }}
+            >
               <img src="/save.png" alt="" />
-              Save the Place
+              {saved ? "Place Saved" : "Save the Place"}
             </button>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default SinglePage
+export default SinglePage;

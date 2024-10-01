@@ -5,6 +5,7 @@ import "./ProfilePage.scss";
 import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Suspense, useContext } from "react";
 import apiRequest from "../../lib/apiRequest";
+import Card from "../../components/card/Card";
 
 function ProfilePage() {
   const data = useLoaderData();
@@ -58,22 +59,30 @@ function ProfilePage() {
             </Link>
           </div>
 
-          <List />
-
-          {/* <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<p>Loading...</p>}>
             <Await
               resolve={data.postResponse}
-              errorElement={<p>Error loading posts!</p>}
+              errorElement={<p>Error while loading posts!</p>}
             >
               {(postResponse) => <List posts={postResponse.data.userPosts} />}
             </Await>
-          </Suspense> */}
+          </Suspense>
+
+          {/* <List /> */}
 
           <div className="title">
             <h1>Saved List</h1>
           </div>
 
-          <List />
+          {/* <List /> */}
+          <Suspense fallback={<p>Loading...</p>}>
+            <Await
+              resolve={data.postResponse}
+              errorElement={<p>Error while loading posts!</p>}
+            >
+              {(postResponse) => <List posts={postResponse.data.savedPosts} />}
+            </Await>
+          </Suspense>
 
         </div>
       </div>

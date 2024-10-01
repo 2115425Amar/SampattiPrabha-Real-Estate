@@ -43,6 +43,7 @@ export const updateUser = async (req, res)=>{
         if(password){
             updatedPassword=await bcrypt.hash(password, 10);
         }
+        //update the user data
         const updatedUser = await prisma.user.update({
             where:{id},
             data : {
@@ -52,7 +53,7 @@ export const updateUser = async (req, res)=>{
             },
         });
 
-        const {password:userPassword, ...rest} = updatedUser;
+        const {password:userPassword, ...rest} = updatedUser; // Exclude password from response
 
         res.status(200).json(rest);
         // console.log(updateUser);
@@ -86,7 +87,7 @@ export const deleteUser = async (req, res)=>{
 export const savePost = async (req, res)=>{
         const postId = req.params.postId;
         const tokenUserId = req.userId;
-        console.log(id, tokenUserId);
+        // console.log(id, tokenUserId);
 
     try{
         const savedPost = await prisma.savedPost.findUnique({

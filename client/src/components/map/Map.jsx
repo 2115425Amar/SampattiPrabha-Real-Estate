@@ -15,7 +15,7 @@ function Map({items}) {
            // Lucknow, Uttar Pradesh as the initial center
           // Adjusted zoom to fit UP cities
       }
-      zoom={5}
+      zoom={4.5}
       scrollWheelZoom={false}
       className="map"
     >
