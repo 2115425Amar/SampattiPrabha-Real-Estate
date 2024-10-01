@@ -13,6 +13,7 @@ import Register from "./pages/Register/Register";
 import ProfileUpdatePage from "./pages/profileUpdatePage/ProfileUpdatePage";
 import NewPostPage from "./pages/newPostPage/NewPostPage";
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
+import Contact from "./pages/Contact/Contact";
 
 function App() {
 
@@ -44,7 +45,11 @@ function App() {
         {
           path:"/register",
           element:<Register/>
-        }
+        },
+        {
+          path:"/contact",
+          element:<Contact/>
+        },
       ]
     },
     {

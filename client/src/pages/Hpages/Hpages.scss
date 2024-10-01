@@ -1,79 +1,104 @@
 @import "../../responsive.scss";
 
-.Hpages{
-    display: flex;
-    height: 100%;
+// Keyframes for sliding from right to left and disappearing
+@keyframes slideAndDisappearRTL {
+  0% {
+    transform: translateX(100%); // Start from the right (offscreen)
+    opacity: 0; // Invisible at the start
+  }
+  10% {
+    opacity: 1; // Start becoming visible
+  }
+  50% {
+    transform: translateX(0); // Move to the center (onscreen)
+    opacity: 1; // Fully visible
+  }
+  90% {
+    transform: translateX(-100%); // Move to the left (offscreen)
+    opacity: 0; // Start disappearing
+  }
+  100% {
+    transform: translateX(-100%); // Fully offscreen to the left
+    opacity: 0; // Invisible at the end
+  }
+}
 
-    .textContainer{
-        flex: 3;
+.Hpages {
+  display: flex;
+  height: 100%;
 
-        .wrapper{
-            padding-right: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 50px;
-            height: 100%;
+  .textContainer {
+    flex: 3;
 
-            @include md{
-                padding: 0;
-            }
+    .wrapper {
+      padding-right: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 50px;
+      height: 100%;
 
-            @include sm{
-                justify-content: flex-start;
-            }
+      @include md {
+        padding: 0;
+      }
 
-            .title{
-                font-size: 64px;
+      @include sm {
+        justify-content: flex-start;
+      }
 
-                @include lg{
-                    font-size: 48px;
-                }
-            }
+      h1 {
+        font-size: 64px;
+        animation: slideAndDisappearRTL 4s ease-in-out infinite; // Applying the continuous animation for right-to-left movement
 
-            .boxes{
-                display:flex ;
-                justify-content: space-between;
-
-                @include sm{
-                    display: none;
-                }
-
-                h1{
-                    font-size: 36px;
-
-                    @include lg{
-                        font-size: 32px;
-                    }
-                }
-
-                h2{
-                    font-size: 20px;
-                    font-weight: 300;
-                }
-            }
+        @include lg {
+          font-size: 48px;
         }
-    }
+      }
 
-    .imgContainer{
-        flex: 2;
-        background-color: #fcf5f3;
-        position: relative;
+      .boxes {
         display: flex;
-        align-items: center;
+        justify-content: space-between;
 
-        @include md{
-            display: none;
+        @include sm {
+          display: none;
         }
 
-        img{
-            width: 115%;
-            position: absolute;
-            right: 0;
+        h1 {
+          font-size: 36px;
 
-            @include lg{
-                width: 105%;
-            }
+          @include lg {
+            font-size: 32px;
+          }
         }
+
+        h2 {
+          font-size: 20px;
+          font-weight: 300;
+        }
+      }
     }
+  }
+
+  .imgContainer {
+    flex: 2;
+    background-color: #fcf5f3;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    @include md {
+      display: none;
+    }
+
+    img {
+      width: 115%;
+      position: absolute;
+      right: 0;
+      margin-top: 80px;
+
+      @include lg {
+        width: 105%;
+      }
+    }
+  }
 }
