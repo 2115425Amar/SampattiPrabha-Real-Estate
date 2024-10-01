@@ -20,7 +20,7 @@ function Navbar() {
           </a>
           <a href="/">Home</a>
           <a href="/list">List</a>
-          <a href="/">Contact</a>
+          <a href="/contact">Contact</a>
           <a href="/">Agents</a>
         </div>
         <div className="right">

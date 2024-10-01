@@ -11,9 +11,11 @@ function Map({items}) {
       center={
         items.length === 1
           ? [items[0].latitude, items[0].longitude]
-          : [52.4797, -1.90269]
+          : [26.8467, 80.9462]
+           // Lucknow, Uttar Pradesh as the initial center
+          // Adjusted zoom to fit UP cities
       }
-      zoom={7}
+      zoom={5}
       scrollWheelZoom={false}
       className="map"
     >
