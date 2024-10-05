@@ -1,5 +1,4 @@
 import Hpages from "./pages/Hpages/Hpages"
-
 import {
   createBrowserRouter,
   RouterProvider,

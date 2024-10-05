@@ -5,7 +5,7 @@ import "./ProfilePage.scss";
 import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Suspense, useContext } from "react";
 import apiRequest from "../../lib/apiRequest";
-import Card from "../../components/card/Card";
+// import Card from "../../components/card/Card";
 
 function ProfilePage() {
   const data = useLoaderData();

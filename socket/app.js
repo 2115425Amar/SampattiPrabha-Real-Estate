@@ -32,7 +32,8 @@ const addUser = (userId, socketId) => {
       const receiver = getUser(receiverId);
       if (receiver) {
         io.to(receiver.socketId).emit("getMessage", data);
-      } else {
+      }
+       else {
         console.log(`User with ID ${receiverId} is not connected.`);
       }
     });
