@@ -1,14 +1,12 @@
 import prisma from "../lib/prisma.js";
 
 export const getChats = async (req, res)=>{
-
     // console.log('Request userId:', req.userId); // Debugging line
     const tokenUserId = req.userId;
 
     if (!tokenUserId) {
         return res.status(400).json({ message: "User ID is missing" });
     }
-
     try{
         const chats = await prisma.chat.findMany({
             where:{
@@ -35,7 +33,6 @@ export const getChats = async (req, res)=>{
             });
             chat.receiver = receiver;
           }
-      
         res.status(200).json(chats);
     }catch(err){
         console.log(err);
