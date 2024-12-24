@@ -8,6 +8,7 @@ function Hpages() {
   const {currentUser} = useContext(AuthContext);
   
   console.log(currentUser);
+  
   return (
     <div className='Hpages'>
       <div className="textContainer">

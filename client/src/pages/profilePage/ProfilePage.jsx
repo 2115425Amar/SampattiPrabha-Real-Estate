@@ -107,6 +107,8 @@ function ProfilePage() {
           {/* <Chat /> */}
         </div>
       </div>
+
+      
     </div>
   );
 }
