@@ -1,0 +1,17 @@
+const existingEmail = await prisma.user.findUnique({       
+    where: { email },
+});
+
+--------------------------------------------------------------
+
+ const newUser = await prisma.user.create({
+            data: {
+                username,
+                email,
+                password: hashedPassword,
+            },
+});
+
+----------------------------------------------------------------
+
+

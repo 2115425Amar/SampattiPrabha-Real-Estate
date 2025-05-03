@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./SearchBar.scss";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const types = ["buy","rent"];
+const types = ["buy", "rent"];
 
 function SearchBar() {
-  const [query,setQuery] = useState({
+  const [query, setQuery] = useState({
     type: "buy",
     location: "",
     minPrice: 0,
@@ -13,7 +13,7 @@ function SearchBar() {
   });
 
   const switchType = (val) => {
-    setQuery((prev) => ({...prev, type:val}));
+    setQuery((prev) => ({ ...prev, type: val }));
   };
 
   const handleChange = (e) => {
@@ -68,4 +68,4 @@ function SearchBar() {
   );
 }
 
-export default SearchBar
+export default SearchBar;

@@ -15,10 +15,11 @@ datasource db {
 
 // 1. id Field:
 // id String @id @default(auto()) @map("_id") @db.ObjectId
-// @id: Marks this field as the primary key of the document (unique identifier).
-// @default(auto()): Automatically generates a value for the field when a new document is created (typically ObjectId in MongoDB).
-// @map("_id"): This maps the id field in Prisma to MongoDB's default primary key field, _id.
-// @db.ObjectId: Indicates that the field is stored as an ObjectId in MongoDB, which is the standard format for _id.
+
+// @id:   This marks the field as the primary key for the model. Every record in this model will be uniquely identified by this field.
+// @default(auto()):  Automatically generates a value for the field when a new document is created (typically ObjectId in MongoDB).
+// @map("_id"):       This maps the id field in Prisma to MongoDB's default primary key field, _id.
+// @db.ObjectId:      Indicates that the field is stored as an ObjectId in MongoDB, which is the standard format for _id.
 
 
 
@@ -55,7 +56,7 @@ enum Property {
 }
 
 model postDetail {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId      //
   desc String
   utilities String?
   pet String?

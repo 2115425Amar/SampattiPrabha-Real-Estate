@@ -5,40 +5,38 @@ import apiRequest from "../../lib/apiRequest";
 import { useNavigate } from "react-router-dom";
 import CloudinaryUploadWidget from "../../components/uploadWidget/UploadWidget";
 
-function ProfileUpdatePage(){
+function ProfileUpdatePage() {
   const [error, setError] = useState("");
   // const {updateUser, currentUser} = useContext(AuthContext);
-  const {currentUser, updateUser} = useContext(AuthContext);
+  const { currentUser, updateUser } = useContext(AuthContext);
   const [avatar, setAvatar] = useState([]);
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault()
-    const formData = new FormData(e.target)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
 
-    const {username, email, password}=Object.fromEntries(formData);
+    const { username, email, password } = Object.fromEntries(formData);
 
-    try{
-      const res = await apiRequest.put(`/users/${currentUser.id}`,{
+    try {
+      const res = await apiRequest.put(`/users/${currentUser.id}`, {
         username,
         email,
         password,
-        avatar:avatar[0],
+        avatar: avatar[0],
       });
 
-      updateUser(res.data);
+      updateUser(res.data);          //this function is in user controller
       console.log("ye raha update profile ka data");
       // console.log(res.data);
 
       navigate("/profile");
-
-    }catch(err){
-      console.log(err)
+    } catch (err) {
+      console.log(err);
       setError(err.response.data.message);
     }
-  }
-
+  };
 
   return (
     <div className="profileUpdatePage">
@@ -72,19 +70,24 @@ function ProfileUpdatePage(){
         </form>
       </div>
       <div className="sideContainer">
-        <img src={ avatar[0] || currentUser.avatar|| "/noavatar.jpeg"} alt="" className="avatar" />
-        <CloudinaryUploadWidget uwConfig={{
-          cloudName : "lamadev",
-          uploadPreset:"estate",
-          multiple:false,
-          maxImageFileSize:2000000,
-          folder:"avatars",
-        }}
-        setState={setAvatar}
+        <img
+          src={avatar[0] || currentUser.avatar || "/noavatar.jpeg"}
+          alt=""
+          className="avatar"
+        />
+        <CloudinaryUploadWidget
+          uwConfig={{
+            cloudName: "lamadev",
+            uploadPreset: "estate",
+            multiple: false,
+            maxImageFileSize: 2000000,
+            folder: "avatars",
+          }}
+          setState={setAvatar}
         />
       </div>
     </div>
   );
 }
 
-export default ProfileUpdatePage
+export default ProfileUpdatePage;

@@ -33,7 +33,7 @@ function Hpages() {
         </div>
       </div>
       <div className="imgContainer">
-        <img src="bg.png" alt="" />
+        <img src="bg4.png" alt="" />
       </div>
     </div>
   )

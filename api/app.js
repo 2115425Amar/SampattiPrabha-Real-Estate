@@ -5,7 +5,7 @@ import authRoute from "./routes/auth.route.js";
 import postRoute from "./routes/post.route.js";
 import testRoute from "./routes/test.route.js";
 import userRoute from "./routes/user.route.js";
-import chatRoute from "./routes/chat.route.js";
+// import chatRoute from "./routes/chat.route.js";
 import messageRoute from "./routes/message.route.js";
 import 'dotenv/config';
 
@@ -19,7 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //cross-original policy
-app.use(cors({origin:process.env.CLIENT_URL, credentials:true}));
+app.use(cors({
+    origin: process.env.CLIENT_URL, // Ensure this matches http://localhost:5173
+    credentials: true, // Allow cookies
+}));
 
 app.get('/',(req,res)=>{
     res.send(`THIS IS HOMEPAGE`);
@@ -29,7 +32,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/posts",postRoute);
 app.use("/api/test", testRoute);
 app.use("/api/users",userRoute);
-app.use("/api/chats",chatRoute);
+// app.use("/api/chats",chatRoute);
 app.use("/api/messages",messageRoute);
 
 app.listen(8000, ()=>{
