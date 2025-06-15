@@ -1,4 +1,4 @@
-**Full Stack Real Estate App using MERN Stack, Prisma, and Socket.io**
+**Full Stack Real Estate App using MERN Stack, Prisma, and 
 
 A full-featured Real Estate web application built using the MERN stack, integrated with Prisma for database management, JWT and Cookies for secure user authentication, and real-time chat functionality with Socket.io. This project covers a wide range of modern web development techniques and ensures a responsive, interactive user experience.
 
