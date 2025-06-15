@@ -2,8 +2,8 @@ import axios from 'axios';
 // import dotenv from 'dotenv';
 
 const apiRequest = axios.create({
-    baseURL: "http://localhost:8000/api",
-    // baseURL: "https://majarproject-2-1.onrender.com/api",
+    // baseURL: "http://localhost:8000/api",
+    baseURL: "https://majarproject-2-1.onrender.com/api",
     // baseURL: `${process.env.REACT_APP_API}/api`,
     withCredentials:true,
 });
