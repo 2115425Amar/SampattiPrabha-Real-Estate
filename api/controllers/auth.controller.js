@@ -71,11 +71,11 @@ export const login = async (req, res) => {
         }
 
         const payload = {
-            id: user._id,
+            id: user.id,
             isAdmin: true,
         };
-        // console.log("id aya kya");
-        console.log(payload.id);
+        //  console.log("id aya kya");
+        // console.log(payload.id);
 
         //verify password and generate a JWT taken
         if (await bcrypt.compare(password, user.password)) {

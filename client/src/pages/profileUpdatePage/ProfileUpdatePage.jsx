@@ -20,6 +20,7 @@ function ProfileUpdatePage() {
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
+      // console.log("Sending update request...");
       const res = await apiRequest.put(`/users/${currentUser.id}`, {
         username,
         email,
@@ -28,12 +29,11 @@ function ProfileUpdatePage() {
       });
 
       updateUser(res.data);          //this function is in user controller
-      console.log("ye raha update profile ka data");
+      // console.log("ye raha update profile ka data");
       // console.log(res.data);
-
       navigate("/profile");
     } catch (err) {
-      console.log(err);
+      console.error("Error updating profile:", err.response?.data || err.message);
       setError(err.response.data.message);
     }
   };
