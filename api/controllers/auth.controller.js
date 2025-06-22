@@ -93,6 +93,10 @@ export const login = async (req, res) => {
             const options = {
                 expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
                 httpOnly: true,
+                expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days
+                httpOnly: true,
+                sameSite: "Lax", // "None" if frontend and backend are on different domains in production
+                secure: process.env.NODE_ENV === "production", // set true for https
             };
 
             res.cookie("token", token, options).status(200).json(userInfo);
