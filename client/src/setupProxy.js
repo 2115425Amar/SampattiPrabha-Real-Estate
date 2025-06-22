@@ -5,7 +5,7 @@ module.exports = function(app) {
     '/api',
     createProxyMiddleware({
     // target: 'https://majarproject-2-1.onrender.com',
-    target:`${process.env.REACT_APP_API}/api`,
+    target:`${process.env.VITE_API_URL}/api`,
     changeOrigin: true,
     })
   );
