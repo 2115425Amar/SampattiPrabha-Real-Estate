@@ -72,7 +72,7 @@ export const login = async (req, res) => {
 
         const payload = {
             id: user.id,
-            isAdmin: true,
+            isAdmin: false,
         };
         //  console.log("id aya kya");
         // console.log(payload.id);
