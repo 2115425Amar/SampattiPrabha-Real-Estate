@@ -2,9 +2,9 @@
 
 nav {
   height: 100px;
-  align-items: center;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   a {
     transition: all 0.4s ease;
@@ -28,11 +28,11 @@ nav {
       font-weight: bold;
       font-size: 20px;
       display: flex;
-      align-content: center;
+      align-items: center;
       gap: 10px;
 
       img {
-        width: 20px;
+        width: 28px;
       }
 
       span {
@@ -46,11 +46,9 @@ nav {
       }
     }
   }
-
   .right {
     flex: 2;
     display: flex;
-    gap: 50px;
     align-items: center;
     justify-content: flex-end;
     background-color: #fcf5f3;
@@ -63,64 +61,48 @@ nav {
     a {
       padding: 12px 24px;
       margin: 20px;
-      display: flex; // Align icon and text
-      align-items: center; // Center the icon vertically with text
-      transition: background-color 0.3s ease; // Transition for background color
-
-      &:hover {
-        background-color: #fece51; // Change background color on hover
-      }
-
-      img {
-        margin-right: 8px; // Space between icon and text
-        transition: transform 0.3s ease; // Transition for scaling
-      }
-
-      &:hover img {
-        transform: scale(1.1); // Scale icon on hover
-      }
     }
 
-    .user {
+    .user{
       display: flex;
       align-items: center;
       font-weight: bold;
 
-      img {
+      img{
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        border-color: black;
         object-fit: cover;
         margin-right: 20px;
       }
 
-      span {
-        @include sm {
+      span{
+        @include sm{
           display: none;
         }
       }
 
-      .profile {
+      .profile{
         padding: 12px 24px;
         background-color: #fece51;
         cursor: pointer;
         border: none;
         position: relative;
-
-        .notification {
+        
+        .notification{
           position: absolute;
           top: -8px;
           right: -8px;
           background-color: red;
           color: white;
-          border-radius: 50px;
+          border-radius: 50%;
           width: 26px;
           height: 26px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
+
       }
     }
 
@@ -154,8 +136,8 @@ nav {
       transition: all 1s ease;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       font-size: 24px;
 
       &.active {
