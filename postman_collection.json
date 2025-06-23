@@ -1,0 +1,457 @@
+{
+    "info": {
+        "_postman_id": "e448e5c4-2007-4e7b-9a75-1aef1a919fc1",
+        "name": "realState",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "chats",
+            "item": [
+                {
+                    "name": "getChats",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8000/api/chats",
+                            "path": [
+                                "api",
+                                "chats"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Cookie",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MjY5MDYyODMsImV4cCI6MTcyNjkxMzQ4M30.77P9E8HqmcEKiZYGu7B2wXtKlRIcGXZAfi0FWuTv2Rw"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "get Chat",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8000/api/chats/670158c62223c377d241ac0f",
+                            "path": [
+                                "api",
+                                "chats",
+                                "670158c62223c377d241ac0f"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        }
+                    }
+                },
+                {
+                    "name": "Add Chat",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8000/api/chats",
+                            "path": [
+                                "api",
+                                "chats"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"receiverId\":\"66c32a7094cc344f2351361d\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Read Chat",
+                    "request": {
+                        "method": "GET"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Messages",
+            "item": [
+                {
+                    "name": "Add Message",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8000/api/messages/670158c62223c377d241ac0f",
+                            "path": [
+                                "api",
+                                "messages",
+                                "670158c62223c377d241ac0f"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"text\":\"5-10-24n message\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "http://localhost:8000/api/auth/register",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/auth/register",
+                    "path": [
+                        "api",
+                        "auth",
+                        "register"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"username\": \"wolf\",\n  \"email\": \"wolf@wolf.com\",\n  \"password\": \"wolf\"\n}\n"
+                }
+            }
+        },
+        {
+            "name": "login",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/auth/login",
+                    "path": [
+                        "api",
+                        "auth",
+                        "login"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"username\":\"wolf\",\n  \"password\":\"wolf\"\n}"
+                }
+            }
+        },
+        {
+            "name": "logout",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/auth/logout",
+                    "path": [
+                        "api",
+                        "auth",
+                        "logout"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Cookie",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MjUwMTg4NzUsImV4cCI6MTcyNTAyNjA3NX0.Agl6n2U9FglshyTNhp1VKYqnGrBoCC0uZp0K-qmwggg"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "test/protectedRoute",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/api/test/should-be-logged-in",
+                    "path": [
+                        "api",
+                        "test",
+                        "should-be-logged-in"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Cookie",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MjUwMTg4NzUsImV4cCI6MTcyNTAyNjA3NX0.Agl6n2U9FglshyTNhp1VKYqnGrBoCC0uZp0K-qmwggg"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "isAdmin",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/api/test/should-be-Admin",
+                    "path": [
+                        "api",
+                        "test",
+                        "should-be-Admin"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Cookie",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MjUwMTg4NzUsImV4cCI6MTcyNTAyNjA3NX0.Agl6n2U9FglshyTNhp1VKYqnGrBoCC0uZp0K-qmwggg"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "getUsers",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/api/users/",
+                    "path": [
+                        "api",
+                        "users"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                }
+            }
+        },
+        {
+            "name": "getSingleUser",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/api/users/66c32a7094cc344f2351361d",
+                    "path": [
+                        "api",
+                        "users",
+                        "66c32a7094cc344f2351361d"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                }
+            }
+        },
+        {
+            "name": "updateUser",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "http://localhost:8000/api/users/66ee8a9edf9cc1659c3394f6",
+                    "path": [
+                        "api",
+                        "users",
+                        "66ee8a9edf9cc1659c3394f6"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"username\":\"mogambo\",\n  \"email\":\"mogambo\",\n  \"password\":\"mogambo\"\n}"
+                }
+            }
+        },
+        {
+            "name": "deleteUser",
+            "request": {
+                "method": "GET"
+            }
+        },
+        {
+            "name": "render-register",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://majarproject-2-1.onrender.com/api/auth/register",
+                    "path": [
+                        "api",
+                        "auth",
+                        "register"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "majarproject-2-1",
+                        "onrender",
+                        "com"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"username\":\"amargupta\",\n    \"email\":\"amarg2@gmail.com\",\n    \"password\":\"123456\"\n}"
+                }
+            }
+        },
+        {
+            "name": "getPost",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/api/posts/66f90d4495960a3842b3cfeb",
+                    "path": [
+                        "api",
+                        "posts",
+                        "66f90d4495960a3842b3cfeb"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                }
+            }
+        },
+        {
+            "name": "updatePost",
+            "request": {
+                "method": "GET"
+            }
+        },
+        {
+            "name": "logout-atlas",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://majarproject-2-1.onrender.com/api/auth/logout",
+                    "path": [
+                        "api",
+                        "auth",
+                        "logout"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "majarproject-2-1",
+                        "onrender",
+                        "com"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "createPost",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/posts",
+                    "path": [
+                        "api",
+                        "posts"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"postData\": {\r\n    \"title\": \"Title2\",\r\n    \"price\": 111,\r\n    \"images\": [\r\n      \"https://plus.unsplash.com/premium_photo-1684341008404-af4df3d54615?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D\"\r\n    ],\r\n    \"address\": \"Address1\",\r\n    \"city\": \"city1\",\r\n    \"bedroom\": 11,\r\n    \"bathroom\": 111,\r\n    \"type\": \"rent\",\r\n    \"property\": \"apartment\",\r\n    \"latitude\": \"21.5074\",\r\n    \"longitude\": \"-0.1278\"\r\n  },\r\n  \"postDetail\": {\r\n    \"desc\": \"Desc 1\",\r\n    \"utilities\": \"Owner is responsible\",\r\n    \"pet\": \"Allowed\",\r\n    \"income\": \"3x income\",\r\n    \"size\": 88,\r\n    \"school\": 1200,\r\n    \"bus\": 800,\r\n    \"restaurant\": 1500\r\n  }\r\n}\r\n"
+                }
+            }
+        },
+        {
+            "name": "Delete Post",
+            "request": {
+                "method": "GET"
+            }
+        },
+        {
+            "name": "GetSinglePost",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/api/posts",
+                    "path": [
+                        "api",
+                        "posts"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                }
+            }
+        }
+    ]
+}

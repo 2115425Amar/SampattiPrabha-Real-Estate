@@ -10,6 +10,7 @@ A full-featured Real Estate web application built using the MERN stack, integrat
 - **Routing:** Client-side routing using React Router DOM, including protected routes for authenticated users only.
 - **CRUD Operations:** Full Create, Read, Update, Delete (CRUD) functionality for property listings.
 - **File Upload:** Image upload functionality for property listings to enhance the user experience.
+<!-- https://cloudinary.com/documentation/react_image_and_video_upload -->
 
 ### **Technologies Used:**
 - **Frontend:** React.js, CSS, Context API, Zustand, React Router DOM

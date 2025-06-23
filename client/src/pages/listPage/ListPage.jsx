@@ -19,6 +19,8 @@ function ListPage() {
           {/* {data.map(item=>(
             <Card key={item.id} item={item}/>
           ))} */}
+
+          {/* React Suspense is a built-in React feature that lets you wait ("suspend") rendering part of your component tree until some async data or code is ready — like lazy-loaded components or data fetching. */}
           <Suspense fallback={<p>Loading...</p>}>
             <Await
               resolve={data.postResponse}
