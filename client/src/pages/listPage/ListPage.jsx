@@ -21,6 +21,8 @@ function ListPage() {
           ))} */}
 
           {/* React Suspense is a built-in React feature that lets you wait ("suspend") rendering part of your component tree until some async data or code is ready — like lazy-loaded components or data fetching. */}
+          {/* Suspense – "Ruko zara... Sabar karo 😄" */}
+          {/* Suspense React ka ek component hai jo loading screen dikhata hai jab tak koi cheez (jaise component ya data) load ho rahi ho. */}
           <Suspense fallback={<p>Loading...</p>}>
             <Await
               resolve={data.postResponse}

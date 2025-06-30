@@ -8,6 +8,7 @@ export const singlePageLoader = async ({ request, params }) => {
 export const listPageLoader = async ({ request, params }) => {
   const query = request.url.split("?")[1];
   const postPromise = apiRequest("/posts?" + query);
+  // defer() use hota hai agar aap chahte ho ki kuch data turant mil jaye aur baaki data background mein aaye.
   return defer({
     postResponse: postPromise,
   });
