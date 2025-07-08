@@ -29,8 +29,8 @@ export const getPosts = async (req, res) => {
 
 // ------------------------------------------------
 const verifyToken = (token) => {
-  console.log("Verifying token:", token);
-  // if (!token) return null; // If no token is provided, return null
+  // console.log("Verifying token:", token);
+  if (!token) return null; // If no token is provided, return null
   return new Promise((resolve) => {
     JWT.verify(token, process.env.JWT_SECRET_KEY, (err, payload) => {
       if (err) return resolve(null); // If token is invalid or expired, resolve as null
@@ -126,6 +126,7 @@ export const updatePost = async (req, res) => {
   }
 };
 
+
 export const deletePost = async (req, res) => {
   const id = req.params.id;
   const tokenUserId = req.userId;
@@ -148,5 +149,3 @@ export const deletePost = async (req, res) => {
     res.status(500).json({ message: "Failed to delete post" });
   }
 };
-
-

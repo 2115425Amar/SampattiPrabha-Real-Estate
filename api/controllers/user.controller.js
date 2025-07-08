@@ -84,10 +84,13 @@ export const deleteUser = async (req, res) => {
     }
 }
 
+
+
 export const savePost = async (req, res) => {
-    const postId = req.params.postId;
+    // const postId = req.params.postId;
+     const postId = req.body.postId;
     const tokenUserId = req.userId;
-    // console.log(id, tokenUserId);
+    console.log(postId, tokenUserId);
 
     try {
         const savedPost = await prisma.savedPost.findUnique({
@@ -118,9 +121,10 @@ export const savePost = async (req, res) => {
         }
     } catch (err) {
         console.log(err);
-        res.status(500).json({ message: "Failed to delete user" });
+        res.status(500).json({ message: "Failed to save post" });
     }
 }
+
 
 export const profilePosts = async (req, res) => {
     const tokenUserId = req.params.userId;   //yahan change krna pd sakta hai

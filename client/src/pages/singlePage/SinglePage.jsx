@@ -28,7 +28,7 @@ function SinglePage() {
     }
   };
 
-  console.log(post);
+  // console.log(post);
   return (
     <div className="singlePage">
       <div className="details">
