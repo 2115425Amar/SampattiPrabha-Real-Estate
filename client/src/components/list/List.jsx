@@ -1,4 +1,3 @@
-import React from 'react'
 import './List.scss'
 import Card from"../card/Card"
 // import {listData} from "../../lib/Dummydata"

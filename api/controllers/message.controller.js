@@ -1,12 +1,9 @@
 import prisma from "../lib/prisma.js";
-// import bcrypt from "bcrypt";
 
 export const addMessage = async (req, res)=>{
     const tokenUserId = req.userId;
     const chatId = req.params.chatId;
-    //const text = req.params.text;
     const text = req.body.text;
-
     try{
         const chat = await prisma.chat.findUnique({
             where: {
@@ -16,9 +13,7 @@ export const addMessage = async (req, res)=>{
                 },
             },
         });
-
         if(!chat) return res.status(404).json({message: "Chat not found!"});
-
         const message = await prisma.message.create({
             data:{
                 chatId,
@@ -26,7 +21,6 @@ export const addMessage = async (req, res)=>{
                 text,
             }
         })
-
         await prisma.chat.update({
             where:{
                 id: chatId,
@@ -36,7 +30,6 @@ export const addMessage = async (req, res)=>{
                 lastMessage: text,
             },
         });
-
         res.status(200).json(message);
     }
     catch(err){

@@ -6,6 +6,10 @@ export const register = async (req, res) => {
     // console.log(req.body);
     const { username, email, password } = req.body;
 
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+  }
+
     try {
         const existingUser = await prisma.user.findUnique({
             where: { username },
@@ -81,7 +85,7 @@ export const login = async (req, res) => {
         if (await bcrypt.compare(password, user.password)) {
             //password matched
             let token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {
-                expiresIn: "2h",
+                expiresIn: "21h",
             });
 
             // user =  prisma.user.toObject();

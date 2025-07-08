@@ -26,7 +26,6 @@ export const getUser = async (req, res) => {
 }
 
 
-//isme not authorized aa rha hai ise change karna hai
 export const updateUser = async (req, res) => {
     const id = req.params.id;
     const tokenUserId = req.userId;
@@ -90,7 +89,7 @@ export const savePost = async (req, res) => {
     // const postId = req.params.postId;
      const postId = req.body.postId;
     const tokenUserId = req.userId;
-    console.log(postId, tokenUserId);
+    // console.log(postId, tokenUserId);
 
     try {
         const savedPost = await prisma.savedPost.findUnique({
@@ -127,11 +126,11 @@ export const savePost = async (req, res) => {
 
 
 export const profilePosts = async (req, res) => {
-    const tokenUserId = req.params.userId;   //yahan change krna pd sakta hai
+    const tokenUserId = req.userId;  
     if (!tokenUserId) {
         return res.status(403).json({ message: "Not Authorized" });
     }
-    console.log("User ID from token:", tokenUserId);
+    // console.log("User ID from token:", tokenUserId);
     try {
         const userPosts = await prisma.post.findMany({
             where: { userId: tokenUserId },
@@ -142,7 +141,6 @@ export const profilePosts = async (req, res) => {
                 post: true,
             }
         });
-
         const savedPosts = saved.map(item => item.post)
         res.status(200).json({ userPosts, savedPosts });
     } catch (err) {

@@ -56,6 +56,8 @@ This repository contains a **Thunder Client Collection** for the **RealState** p
 1. **Register User** (`POST`)
    - **URL**: `http://localhost:8000/api/auth/register`
    - **Description**: Registers a new user.
+   Header:
+   Content-Type: application/json
    - **Body**:
      ```json
      {
