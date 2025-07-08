@@ -126,3 +126,50 @@ export const logout = (req, res) => {
         message: "Logout Successful",
     });
 };
+
+
+// Reset Password Functionality
+export const resetPassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  if (!email || !newPassword) {
+    return res.status(400).json({
+      success: false,
+      message: "Email and new password are required",
+    });
+  }
+
+  try {
+    // Check if user with the email exists
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found with this email",
+      });
+    }
+
+    // Hash new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update password
+    await prisma.user.update({
+      where: { email },
+      data: { password: hashedNewPassword },
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Password reset successfully",
+    });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
