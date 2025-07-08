@@ -38,6 +38,7 @@ This project provides a robust and scalable platform for managing real estate li
 ![alt text](ER-DIAGRAM/h.png)
 ![alt text](ER-DIAGRAM/i.png)
 ![alt text](ER-DIAGRAM/j.png)
+![alt text](ER-DIAGRAM/k.png)
 
 
 # RealState Thunder Client Collection

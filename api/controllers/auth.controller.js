@@ -7,8 +7,8 @@ export const register = async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-      return res.status(400).json({ message: "All fields are required" });
-  }
+        return res.status(400).json({ message: "All fields are required" });
+    }
 
     try {
         const existingUser = await prisma.user.findUnique({
@@ -17,7 +17,6 @@ export const register = async (req, res) => {
         const existingEmail = await prisma.user.findUnique({
             where: { email },
         });
-
         if (existingUser || existingEmail) {
             return res.status(400).json({
                 success: false,
@@ -37,7 +36,6 @@ export const register = async (req, res) => {
             },
         });
         // console.log(newUser);
-
         res.status(201).json({
             message: "User created successfully",
             // newUser
@@ -60,12 +58,10 @@ export const login = async (req, res) => {
                 message: "Please fill all the details successfully",
             });
         }
-
         //check for registered user
         const user = await prisma.user.findUnique({
             where: { username },
         });
-
         //if not a regitered user
         if (!user) {
             return res.status(401).json({
@@ -73,12 +69,10 @@ export const login = async (req, res) => {
                 message: "User is not registered",
             });
         }
-
         const payload = {
             id: user.id,
             isAdmin: false,
         };
-        //  console.log("id aya kya");
         // console.log(payload.id);
 
         //verify password and generate a JWT taken
@@ -91,7 +85,6 @@ export const login = async (req, res) => {
             // user =  prisma.user.toObject();
             // user.token = token;
             // user.password = undefined;
-
             const { password: userPassword, ...userInfo } = user;
 
             const options = {
@@ -130,46 +123,45 @@ export const logout = (req, res) => {
 
 // Reset Password Functionality
 export const resetPassword = async (req, res) => {
-  const { email, newPassword } = req.body;
+    const { email, newPassword } = req.body;
 
-  if (!email || !newPassword) {
-    return res.status(400).json({
-      success: false,
-      message: "Email and new password are required",
-    });
-  }
-
-  try {
-    // Check if user with the email exists
-    const user = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found with this email",
-      });
+    if (!email || !newPassword) {
+        return res.status(400).json({
+            success: false,
+            message: "Email and new password are required",
+        });
     }
+    try {
+        // Check if user with the email exists
+        const user = await prisma.user.findUnique({
+            where: { email },
+        });
 
-    // Hash new password
-    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found with this email",
+            });
+        }
 
-    // Update password
-    await prisma.user.update({
-      where: { email },
-      data: { password: hashedNewPassword },
-    });
+        // Hash new password
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
 
-    res.status(200).json({
-      success: true,
-      message: "Password reset successfully",
-    });
-  } catch (error) {
-    console.error("Error resetting password:", error);
-    res.status(500).json({
-      success: false,
-      message: "Internal server error",
-    });
-  }
+        // Update password
+        await prisma.user.update({
+            where: { email },
+            data: { password: hashedNewPassword },
+        });
+
+        res.status(200).json({
+            success: true,
+            message: "Password reset successfully",
+        });
+    } catch (error) {
+        console.error("Error resetting password:", error);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
+    }
 };
