@@ -10,8 +10,7 @@ import { SocketContext } from "../../context/SocketContext";
 function Chat({ chats }) {
   const [chat, setChat] = useState(null);
   const { currentUser } = useContext(AuthContext);
-  // const socket = useContext(SocketContext);
-  const { socket } = useContext(SocketContext); // ✅ correct
+  const { socket } = useContext(SocketContext); 
 
 
   const decrease = useNotificationStore((state) => state.decrease);
@@ -94,32 +93,19 @@ function Chat({ chats }) {
                   : "#fecd514e",
             }}
             onClick={() => handleOpenChat(c.id, c.receiver)}
-            // onClick={() => setChat(c)}
           >
             <img src={c.receiver.avatar || "/noavatar.jpeg"} alt="" />
             <span>{c.receiver.username}</span>
             <p>{c.lastMessage}</p>
           </div>
         ))}
-
-        {/* <div className="message">
-          <img
-            src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt=""
-          />
-          <span>John Doe</span>
-          <p>Lorem ipsum dolor sit amet...</p>
-        </div> */}
       </div>
       {chat && (
         <div className="chatBox">
           <div className="top">
             <div className="user">
-              <img
-                src={currentUser?.avatar || "noavatar.jpeg"}
-                alt="User Avatar"
-              />
-              <span>{currentUser?.username || "N/A"}</span>
+              <img src={chat.receiver.avatar || "/noavatar.jpeg"} alt="" />
+              {chat.receiver.username}
             </div>
             <span className="close" onClick={() => setChat(null)}>
               X
@@ -150,10 +136,6 @@ function Chat({ chats }) {
             <textarea name="text"></textarea>
             <button>Send</button>
           </form>
-          {/* <div className="bottom">
-            <textarea></textarea>
-            <button>Send</button>
-          </div> */}
         </div>
       )}
     </div>

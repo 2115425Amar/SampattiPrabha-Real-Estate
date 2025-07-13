@@ -33,7 +33,6 @@ function Register() {
   }finally{
     setIsLoading(false);
   }
-
     // console.log(username, email, password);
   }
 

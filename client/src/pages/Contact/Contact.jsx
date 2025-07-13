@@ -13,7 +13,7 @@ const Contact = () => {
     {
       id: 1,
       name: "Ramest Gupta",
-      image: "https://via.placeholder.com/150",
+      image: "/noavatar.jpeg",
       mobile: "+91 6388099423",
       email: "ramestgupta1234@gmail.com",
     }

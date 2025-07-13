@@ -47,7 +47,6 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-    //console.log(`asdfghjsdfghj`);
     const { username, password } = req.body;
 
     try {
@@ -55,7 +54,7 @@ export const login = async (req, res) => {
         if (!username || !password) {
             return res.status(400).json({
                 success: false,
-                message: "Please fill all the details successfully",
+                message: "Please fill all the details",
             });
         }
         //check for registered user

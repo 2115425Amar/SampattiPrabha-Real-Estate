@@ -1,4 +1,3 @@
-import React from 'react'
 import "./Filter.scss"
 import { useState } from "react";
 // import "./filter.scss";

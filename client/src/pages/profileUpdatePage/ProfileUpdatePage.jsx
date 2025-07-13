@@ -7,7 +7,6 @@ import CloudinaryUploadWidget from "../../components/uploadWidget/UploadWidget";
 
 function ProfileUpdatePage() {
   const [error, setError] = useState("");
-  // const {updateUser, currentUser} = useContext(AuthContext);
   const { currentUser, updateUser } = useContext(AuthContext);
   const [avatar, setAvatar] = useState([]);
 
@@ -27,9 +26,6 @@ function ProfileUpdatePage() {
         password,
         avatar: avatar[0],
       });
-
-      updateUser(res.data);          //this function is in user controller
-      // console.log("ye raha update profile ka data");
       // console.log(res.data);
       navigate("/profile");
     } catch (err) {

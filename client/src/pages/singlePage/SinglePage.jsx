@@ -44,10 +44,15 @@ function SinglePage() {
                 </div>
                 <div className="price">₹ {post.price}</div>
               </div>
-              <div className="user">
-                <img src={post.user.avatar} alt="" />
-                <span>{post.user.username}</span>
+              <div
+                  className="user"
+                  // onClick={() => setOpenChat(true)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <img src={post.user.avatar} alt="" />
+                  <span>{post.user.username}</span>
               </div>
+              
             </div>
             {/* <div className="bottom">{post.postDetail.desc}</div> */}
             <div

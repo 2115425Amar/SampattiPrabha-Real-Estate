@@ -75,7 +75,7 @@ export const getPost = async (req, res) => {
         },
       });
     }
-    res.status(200).json({ ...post, isSaved: !!saved }); // Return the post and whether it's saved
+    res.status(200).json({ ...post, isSaved: !!saved }); 
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to get post" });
@@ -88,7 +88,7 @@ export const addPost = async (req, res) => {
   const body = req.body;
   const tokenUserId = req.userId;
 
-  // console.log("Request Body:", body);
+// console.log("Request Body:", body);
 // console.log("Formatted Data:", {
 //   ...body.postData,
 //   userId: tokenUserId,

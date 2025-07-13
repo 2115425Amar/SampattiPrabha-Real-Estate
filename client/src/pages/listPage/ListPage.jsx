@@ -45,7 +45,7 @@ function ListPage() {
             resolve={data.postResponse}
             errorElement={<p>Error loading posts!</p>}
           >
-            {(postResponse) => <Map items={postResponse.data} />}
+          {(postResponse) => <Map items={postResponse.data} />}
           </Await>
         </Suspense>
       </div>

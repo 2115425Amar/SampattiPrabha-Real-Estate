@@ -1,4 +1,3 @@
-import React from 'react'
 import "./Pin.scss";
 import { Marker, Popup } from 'react-leaflet';
 import { Link } from 'react-router-dom';

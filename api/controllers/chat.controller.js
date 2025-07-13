@@ -1,7 +1,7 @@
 import prisma from "../lib/prisma.js";
 
 export const getChats = async (req, res)=>{
-    // console.log('Request userId:', req.userId); // Debugging line
+    // console.log('Request userId:', req.userId); 
     const tokenUserId = req.userId;
     if (!tokenUserId) {
         return res.status(400).json({ message: "User ID is missing" });
