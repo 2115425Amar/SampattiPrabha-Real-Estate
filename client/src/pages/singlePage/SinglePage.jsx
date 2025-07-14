@@ -11,6 +11,7 @@ import apiRequest from "../../lib/apiRequest";
 function SinglePage() {
   const post = useLoaderData();
   const [saved, setSaved] = useState(post.isSaved);
+  const [isSendingMessage, setIsSendingMessage] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -25,6 +26,36 @@ function SinglePage() {
     } catch (err) {
       console.log(err);
       setSaved((prev) => !prev);
+    }
+  };
+
+  const handleSendMessage = async () => {
+    if (!currentUser) {
+      navigate("/login");
+      return;
+    }
+
+    // Don't allow users to message themselves
+    if (currentUser.id === post.userId) {
+      alert("You cannot send a message to yourself!");
+      return;
+    }
+
+    setIsSendingMessage(true);
+    try {
+      // Create a new chat with the post owner
+      const res = await apiRequest.post("/chats", {
+        receiverId: post.userId
+      });
+      
+      // Navigate to profile page with chat section and auto-open the chat
+      navigate(`/profile?chat=${post.userId}`);
+    } catch (err) {
+      console.log(err);
+      // If there's an error, still navigate to profile as the chat might already exist
+      navigate(`/profile?chat=${post.userId}`);
+    } finally {
+      setIsSendingMessage(false);
     }
   };
 
@@ -156,9 +187,9 @@ function SinglePage() {
             <Map items={[post]} />
           </div>
           <div className="buttons">
-            <button>
+            <button onClick={handleSendMessage} disabled={isSendingMessage}>
               <img src="/chat.png" alt="" />
-              Send a Message
+              {isSendingMessage ? "Opening Chat..." : "Send a Message"}
             </button>
 
             <button

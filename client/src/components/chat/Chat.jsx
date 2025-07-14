@@ -7,7 +7,7 @@ import { useNotificationStore } from "../../lib/notificationStore";
 import { format } from "timeago.js";
 import { SocketContext } from "../../context/SocketContext";
 
-function Chat({ chats }) {
+function Chat({ chats, autoOpenUserId }) {
   const [chat, setChat] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const { socket } = useContext(SocketContext); 
@@ -20,6 +20,16 @@ function Chat({ chats }) {
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chat]);
+
+  // Auto-open chat with specific user if autoOpenUserId is provided
+  useEffect(() => {
+    if (autoOpenUserId && chats) {
+      const targetChat = chats.find(c => c.receiver.id === autoOpenUserId);
+      if (targetChat) {
+        handleOpenChat(targetChat.id, targetChat.receiver);
+      }
+    }
+  }, [autoOpenUserId, chats]);
 
   const handleOpenChat = async (id, receiver) => {
     try {

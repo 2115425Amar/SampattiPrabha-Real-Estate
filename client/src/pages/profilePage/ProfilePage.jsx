@@ -1,7 +1,7 @@
 import List from "../../components/list/List";
 import { AuthContext } from "../../context/AuthContext";
 import "./ProfilePage.scss";
-import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Await, Link, useLoaderData, useNavigate, useSearchParams } from "react-router-dom";
 import { Suspense, useContext } from "react";
 import apiRequest from "../../lib/apiRequest";
 import Chat from "../../components/chat/Chat";
@@ -9,6 +9,8 @@ import Chat from "../../components/chat/Chat";
 
 function ProfilePage() {
   const data = useLoaderData();
+  const [searchParams] = useSearchParams();
+  const autoOpenUserId = searchParams.get("chat");
   // console.log("data" , data);
   const { updateUser, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -95,7 +97,7 @@ function ProfilePage() {
             >
               {(chatResponse) =>
                 chatResponse ? (
-                  <Chat chats={chatResponse?.data || []} />
+                  <Chat chats={chatResponse?.data || []} autoOpenUserId={autoOpenUserId} />
                 ) : (
                   <p>No chats available.</p>
                 )
