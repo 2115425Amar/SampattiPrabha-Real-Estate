@@ -51,13 +51,29 @@ function ProfilePage() {
             <button onClick={handleLogout}>Logout</button>
             {/* ---------------- */}
           </div>
+          
+          {/* for checking if user is admin */}
+          {/* ?.isAdmin */}
+          {currentUser && (
+              <>
+                <div className="title">
+                  <h1>My List</h1>
+                  <Link to="/add">
+                    <button>Create New Post</button>
+                  </Link>
+                </div>
+                <Suspense fallback={<p>Loading...</p>}>
+                  <Await
+                    resolve={data.postResponse}
+                    errorElement={<p>Error while loading posts!</p>}
+                  >
+                    {(postResponse) => <List posts={postResponse.data.userPosts} />}
+                  </Await>
+                </Suspense>
+              </>
+            )}
 
-          <div className="title">
-            <h1>My List</h1>
-            <Link to="/add">
-              <button>Create New Post</button>
-            </Link>
-          </div>
+       
 
           <Suspense fallback={<p>Loading...</p>}>
             <Await
