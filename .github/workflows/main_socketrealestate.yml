@@ -6,6 +6,11 @@ on:
       - main
   workflow_dispatch:
 
+# ✅ Required for Azure OIDC Login
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
