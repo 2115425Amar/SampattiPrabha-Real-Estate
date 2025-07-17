@@ -6,7 +6,6 @@ import { useNotificationStore } from "../../lib/notificationStore";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-
   const { currentUser } = useContext(AuthContext);
 
   const fetch = useNotificationStore((state) => state.fetch);
@@ -18,7 +17,8 @@ function Navbar() {
     <nav>
       <div className="left">
         <a href="/" className="logo">
-          <img src="/logo.png" alt="" />
+          <img src="/logo1.jpeg" alt="" />
+           {/* <img src="/SP1.webp" alt="" /> */}
           <span>SampattiPrabha</span>
         </a>
         <a href="/">Home</a>

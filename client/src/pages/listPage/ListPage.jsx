@@ -1,4 +1,3 @@
-import React from 'react'
 import "./ListPage.scss";
 // import { listData } from '../../lib/Dummydata';
 import Filter from '../../components/filter/Filter';
@@ -54,4 +53,3 @@ function ListPage() {
 }
 
 export default ListPage
-

@@ -1,4 +1,4 @@
-##  Full Stack Real Estate App (MERN + Prisma + Socket.io)
+##  SampattiPrabha - Real Estate  (MERN + Prisma + Socket.io)
 
 A **production-ready real estate web platform** built using the MERN stack. This full-featured application enables users to list, discover, and chat about properties in real-time. It uses **Prisma** for database abstraction, **JWT + Cookies** for secure authentication, and **Socket.io** for live messaging—offering a seamless and interactive experience.
 
@@ -65,16 +65,21 @@ A **production-ready real estate web platform** built using the MERN stack. This
 
 
 ![alt text](ER-DIAGRAM/1.png)
+
 <!-- ------------------------------------ -->
 ![alt text](ER-DIAGRAM/2.png)
 
-![alt text](ER-DIAGRAM/a.png)
-![alt text](ER-DIAGRAM/b.png)
-![alt text](ER-DIAGRAM/c.png)
-![alt text](ER-DIAGRAM/d.png)
+![alt text](ER-DIAGRAM/01.png)
+![alt text](ER-DIAGRAM/02.png)
+<!-- ![alt text](ER-DIAGRAM/b.png) -->
+<!-- ![alt text](ER-DIAGRAM/c.png) -->
+<!-- ![alt text](ER-DIAGRAM/d.png) -->
+![alt text](ER-DIAGRAM/03.png)
+![alt text](ER-DIAGRAM/04.png)
+
 ![alt text](ER-DIAGRAM/e.png)
 ![alt text](ER-DIAGRAM/f.png)
-![alt text](ER-DIAGRAM/g.png)
+<!-- ![alt text](ER-DIAGRAM/g.png) -->
 ![alt text](ER-DIAGRAM/h.png)
 ![alt text](ER-DIAGRAM/i.png)
 ![alt text](ER-DIAGRAM/j.png)
