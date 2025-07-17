@@ -28,14 +28,14 @@ jobs:
         working-directory: ./api
 
       - name: Zip artifact for deployment
-        run: zip -r ../release.zip ./*
+        run: zip -r release.zip ./*
         working-directory: ./api
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: release.zip
+          path: api/release.zip
           if-no-files-found: error
 
   deploy:
@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'sampattiprabhaserver'
           slot-name: 'Production'
-          package: .
+          package: release.zip
