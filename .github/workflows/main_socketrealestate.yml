@@ -6,7 +6,6 @@ on:
       - main
   workflow_dispatch:
 
-# ✅ Required for Azure OIDC Login
 permissions:
   id-token: write
   contents: read
@@ -63,4 +62,4 @@ jobs:
         with:
           app-name: 'socketrealestate'
           slot-name: 'Production'
-          package: .
+          package: socket/socketapp.zip

@@ -28,8 +28,10 @@ const io = new Server(server, {
   }
 });
 
-const PORT = process.env.PORT || 4000;
-
+const PORT = process.env.PORT;
+server.listen(PORT, () => {
+  console.log(`Socket.io server running on port ${PORT}`);
+});
 
 let onlineUser = [];
 
