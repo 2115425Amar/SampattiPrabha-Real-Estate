@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: socketapp
-          path: socket/socketapp.zip
+          path: socket/socketapp.zip   # ✅ fixed path here
 
   deploy:
     runs-on: ubuntu-latest
@@ -62,4 +62,4 @@ jobs:
         with:
           app-name: 'socketrealestate'
           slot-name: 'Production'
-          package: socket/socketapp.zip
+          package: socketapp.zip
