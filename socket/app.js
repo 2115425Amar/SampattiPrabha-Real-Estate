@@ -31,7 +31,7 @@ const io = new Server(server, {
 
 // Use the port from environment only (important for Azure)
 const PORT = process.env.PORT;
-console.log("Using PORT:", PORT);
+// console.log("Using PORT:", PORT);
 
 // Start HTTP server
 server.listen(PORT, () => {

@@ -87,7 +87,7 @@ export const deleteUser = async (req, res) => {
 
 export const savePost = async (req, res) => {
     // const postId = req.params.postId;
-     const postId = req.body.postId;
+    const postId = req.body.postId;
     const tokenUserId = req.userId;
     // console.log(postId, tokenUserId);
 
