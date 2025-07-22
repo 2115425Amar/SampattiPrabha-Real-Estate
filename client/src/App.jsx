@@ -6,6 +6,7 @@ import SinglePage from "./pages/singlePage/SinglePage";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import Login from "./pages/login/Login";
 import Register from "./pages/Register/Register";
+import UpdatePassword from "./pages/updatePassword/UpdatePassword";
 import ProfileUpdatePage from "./pages/profileUpdatePage/ProfileUpdatePage";
 import NewPostPage from "./pages/newPostPage/NewPostPage";
 import {
@@ -44,6 +45,10 @@ function App() {
         {
           path: "/register",
           element: <Register />,
+        },
+        {
+          path: "/update",
+          element: <UpdatePassword />,
         },
         {
           path: "/contact",

@@ -89,7 +89,7 @@ export const login = async (req, res) => {
             const options = {
                 expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
                 httpOnly: true,
-                sameSite: "Lax", // "None" if frontend and backend are on different domains in production
+                sameSite: "None", // "None" if frontend and backend are on different domains in production
                 secure: process.env.NODE_ENV === "production", // set true for https
             };
 
