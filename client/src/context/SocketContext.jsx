@@ -39,3 +39,12 @@ export const SocketContextProvider = ({ children }) => {
     </SocketContext.Provider>
   );
 };
+
+
+//  End-to-End Example Flow:
+// User logs in → currentUser.id becomes available
+// Frontend connects to Socket.IO and emits newUser
+// Server adds user to the onlineUser list
+// User A sends a message → emits sendMessage
+// Server looks up receiver’s socket ID → emits getMessage to them
+// Receiver's client gets the real-time message update
