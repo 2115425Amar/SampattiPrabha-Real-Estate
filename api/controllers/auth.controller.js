@@ -86,13 +86,14 @@ export const login = async (req, res) => {
             // user.password = undefined;
             const { password: userPassword, ...userInfo } = user;
 
+            const isProduction = process.env.NODE_ENV === "production";
+
             const options = {
                 expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
                 httpOnly: true,
-                sameSite: "None", // "None" if frontend and backend are on different domains in production
-                secure: process.env.NODE_ENV === "production", // set true for https
-            };
-
+                sameSite: isProduction ? "None" : "Lax",
+                secure: isProduction,
+                };
             res.cookie("token", token, options).status(200).json(userInfo);
         } else {
             //password does not found

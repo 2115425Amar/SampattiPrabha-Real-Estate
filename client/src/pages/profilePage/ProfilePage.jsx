@@ -62,6 +62,7 @@ function ProfilePage() {
                     <button>Create New Post</button>
                   </Link>
                 </div>
+
                 <Suspense fallback={<p>Loading...</p>}>
                   <Await
                     resolve={data.postResponse}
@@ -72,19 +73,6 @@ function ProfilePage() {
                 </Suspense>
               </>
             )}
-
-       
-
-          <Suspense fallback={<p>Loading...</p>}>
-            <Await
-              resolve={data.postResponse}
-              errorElement={<p>Error while loading posts!</p>}
-            >
-              {(postResponse) => <List posts={postResponse.data.userPosts} />}
-            </Await>
-          </Suspense>
-
-          {/* <List /> */}
 
           <div className="title">
             <h1>Saved List</h1>
@@ -124,7 +112,6 @@ function ProfilePage() {
         </div>
       </div>
 
-      
     </div>
   );
 }
