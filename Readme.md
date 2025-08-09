@@ -84,6 +84,7 @@ A **production-ready real estate web platform** built using the MERN stack. This
 ![alt text](ER-DIAGRAM/i.png)
 ![alt text](ER-DIAGRAM/j.png)
 ![alt text](ER-DIAGRAM/k.png)
+![alt text](ER-DIAGRAM/l.png)
 
 <!-- 
 # RealState Thunder Client Collection

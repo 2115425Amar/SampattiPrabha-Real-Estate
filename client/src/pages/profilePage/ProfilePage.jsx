@@ -58,6 +58,9 @@ function ProfilePage() {
               <>
                 <div className="title">
                   <h1>My List</h1>
+                   <Link to="/bulk-upload">
+                    <button className="bulk-upload">Bulk Upload</button>
+                  </Link>
                   <Link to="/add">
                     <button>Create New Post</button>
                   </Link>

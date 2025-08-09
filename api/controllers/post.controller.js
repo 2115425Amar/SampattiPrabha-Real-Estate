@@ -1,5 +1,8 @@
 import JWT from "jsonwebtoken";
 import prisma from "../lib/prisma.js"; //model import
+import fs from "fs";
+import path from "path";
+import XLSX from "xlsx";
 
 export const getPosts = async (req, res) => {
   const query = req.query;
@@ -147,5 +150,77 @@ export const deletePost = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to delete post" });
+  }
+};
+
+
+const categorizePrice = (price) => {
+  if (price < 500000) return "Budget";
+  if (price < 1500000) return "Mid-range";
+  return "Luxury";
+};
+
+export const bulkUploadPosts = async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ message: "No file uploaded" });
+
+    const filePath = path.join(process.cwd(), req.file.path);
+    const workbook = XLSX.readFile(filePath);
+    const sheetName = workbook.SheetNames[0];
+    const jsonData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+    // req.file.path → location of temp file in uploads/ folder.
+    // xlsx library opens the file (supports .csv & .xlsx).
+    // SheetNames[0] gets the first sheet in Excel.
+    // sheet_to_json converts the Excel/CSV rows into an array of JavaScript objects:
+
+    const tokenUserId = req.userId; // from auth middleware
+
+    // Maps each row to your Post model structure.
+    // Splits Images column into an array of image URLs.
+    // Converts numbers from strings.
+    // Uses categorizePrice to classify into "Budget", "Mid-range", "Luxury".
+    // Adds the logged-in user’s userId from token.
+
+    const postsData = jsonData.map((row) => ({
+      title: row.Title,
+      price: parseInt(row.Price, 10),
+      images: row.Images ? row.Images.split(",") : [],
+      address: row.Address,
+      city: row.City,
+      bedroom: parseInt(row.Bedroom, 10),
+      bathroom: parseInt(row.Bathroom, 10),
+      latitude: String(row.Latitude),
+      longitude: String(row.Longitude),
+      type: row.Type.toLowerCase(),
+      property: row.Property.toLowerCase(),
+      postDetail: {
+        create: {
+          desc: row.Description || "",
+          size: parseInt(row.Size, 10) || null,
+          school: parseInt(row.School, 10) || null,
+          bus: parseInt(row.Bus, 10) || null,
+          restaurant: parseInt(row.Restaurant, 10) || null,
+        },
+      },
+      category: categorizePrice(parseInt(row.Price, 10)),
+      userId: tokenUserId,
+    }));
+
+    // prisma.$transaction executes all inserts in one DB transaction.
+    // If any insert fails → the whole batch is rolled back.
+    await prisma.$transaction(
+      postsData.map((post) =>
+        prisma.post.create({
+          data: post,
+        })
+      )
+    );
+
+    fs.unlinkSync(filePath); // cleanup
+    res.status(200).json({ message: `${postsData.length} posts uploaded successfully` });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Bulk upload failed" });
   }
 };

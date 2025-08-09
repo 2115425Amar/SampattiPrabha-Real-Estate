@@ -27,6 +27,7 @@ model Post{
   id        String @id @default(auto()) @map("_id") @db.ObjectId
   title     String 
   price     Int
+  category  String? // "Budget" | "Mid-range" | "Luxury"
   images    String[]
   address   String
   city      String

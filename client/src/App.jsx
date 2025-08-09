@@ -15,6 +15,7 @@ import {
   singlePageLoader,
 } from "./lib/loaders";
 import Contact from "./pages/Contact/Contact";
+import BulkUploadForm from "./pages/BulkUploadForm/BulkUploadForm";
 
 function App() {
   const router = createBrowserRouter([
@@ -72,6 +73,10 @@ function App() {
         {
           path: "/add",
           element: <NewPostPage />,
+        },
+        {
+          path: "/bulk-upload",
+          element: <BulkUploadForm />,
         },
       ],
     },

@@ -27,6 +27,7 @@ function Navbar() {
         <a href="/contact">Contact</a>
         <a href="/">Agents</a>
       </div>
+
       <div className="right">
         {currentUser ? (
           <div className="user">
@@ -45,6 +46,7 @@ function Navbar() {
             </a>
           </>
         )}
+        {/* Menu icon for mobile view */}
         <div className="menuIcon">
           <img
             src="/menu.png"
@@ -62,6 +64,7 @@ function Navbar() {
           <a href="/register">Sign up</a>
         </div>
       </div>
+
     </nav>
   );
 }

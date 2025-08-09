@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import './Layout.scss'
 import Navbar from "../../components/navbar/Navbar"
 import { Navigate, Outlet } from 'react-router-dom'
