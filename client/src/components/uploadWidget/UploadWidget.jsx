@@ -1,3 +1,4 @@
+// D:\WEBDEV\MajorProject\client\src\components\uploadWidget\UploadWidget.jsx
 import { createContext, useEffect, useState } from "react";
 
 // Create a context to manage the script loading state

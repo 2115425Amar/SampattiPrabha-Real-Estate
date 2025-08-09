@@ -1,12 +1,13 @@
-import React, { useContext, useState } from "react";
+// D:\WEBDEV\MajorProject\client\src\pages\singlePage\SinglePage.jsx
+import { useContext, useState } from "react";
 import "./SinglePage.scss";
 import Slider from "../../components/slider/Slider";
 import Map from "../../components/map/Map";
-// import { post, userData } from "../../lib/Dummydata"
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import DOMPurify from "dompurify";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
+// import { post, userData } from "../../lib/Dummydata"
 
 function SinglePage() {
   const post = useLoaderData();
@@ -34,20 +35,17 @@ function SinglePage() {
       navigate("/login");
       return;
     }
-
     // Don't allow users to message themselves
     if (currentUser.id === post.userId) {
       alert("You cannot send a message to yourself!");
       return;
     }
-
     setIsSendingMessage(true);
     try {
       // Create a new chat with the post owner
       const res = await apiRequest.post("/chats", {
-        receiverId: post.userId
+        receiverId: post.userId,
       });
-      
       // Navigate to profile page with chat section and auto-open the chat
       navigate(`/profile?chat=${post.userId}`);
     } catch (err) {
@@ -76,15 +74,35 @@ function SinglePage() {
                 <div className="price">₹ {post.price}</div>
               </div>
               <div
-                  className="user"
-                  // onClick={() => setOpenChat(true)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <img src={post.user.avatar} alt="" />
-                  <span>{post.user.username}</span>
+                className="user"
+                // onClick={() => setOpenChat(true)}
+                style={{ cursor: "pointer" }}
+              >
+                <img src={post.user.avatar} alt="" />
+                <span>{post.user.username}</span>
               </div>
-              
             </div>
+
+            {/* Update button only for post owner */}
+            {currentUser?.id === post.userId && (
+              <div style={{ margin: "10px 0" }}>
+                <Link to={`/edit/${post.id}`}>
+                  <button
+                    style={{
+                      // background: "#4e9bff",
+                      // color: "white",
+                      padding: "8px 15px",
+                      borderRadius: "5px",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                  >
+                    ✏️ Update Post
+                  </button>
+                </Link>
+              </div>
+            )}
+
             {/* <div className="bottom">{post.postDetail.desc}</div> */}
             <div
               className="bottom"

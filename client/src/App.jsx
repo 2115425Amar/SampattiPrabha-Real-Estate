@@ -16,6 +16,7 @@ import {
 } from "./lib/loaders";
 import Contact from "./pages/Contact/Contact";
 import BulkUploadForm from "./pages/BulkUploadForm/BulkUploadForm";
+import EditPostPage from "./pages/EditPostPage/EditPostPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -77,6 +78,11 @@ function App() {
         {
           path: "/bulk-upload",
           element: <BulkUploadForm />,
+        },
+        {
+          path: "/edit/:id",
+          element: <EditPostPage isEdit={true} />,
+          loader: singlePageLoader, // preload data for edit
         },
       ],
     },

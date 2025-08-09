@@ -122,7 +122,50 @@ export const addPost = async (req, res) => {
 
 export const updatePost = async (req, res) => {
   try {
-    res.status(200).json();
+    const postId = req.params.id;
+    const tokenUserId = req.userId;
+
+    const existingPost = await prisma.post.findUnique({
+      where : {id:postId}
+    });
+
+    if(!existingPost){
+      return res.status(404).json({message: "Post not found"});
+    }
+
+    if(existingPost.userId !== tokenUserId){
+      return res.status(404).json({message: "Not authorized"});
+    }
+
+    const updated = await prisma.post.update({
+      where: { id: postId },
+      data: {
+        title: req.body.postData.title,
+        price: req.body.postData.price,
+        address: req.body.postData.address,
+        city: req.body.postData.city,
+        bedroom: req.body.postData.bedroom,
+        bathroom: req.body.postData.bathroom,
+        type: req.body.postData.type,
+        property: req.body.postData.property,
+        latitude: req.body.postData.latitude,
+        longitude: req.body.postData.longitude,
+        images: req.body.postData.images,
+        postDetail: {
+          update: {
+            desc: req.body.postDetail.desc,
+            utilities: req.body.postDetail.utilities,
+            pet: req.body.postDetail.pet,
+            income: req.body.postDetail.income,
+            size: req.body.postDetail.size,
+            school: req.body.postDetail.school,
+            bus: req.body.postDetail.bus,
+            restaurant: req.body.postDetail.restaurant
+          }
+        }
+      }
+    });
+    res.status(200).json(updated);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to update post" });

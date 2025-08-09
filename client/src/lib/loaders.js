@@ -1,3 +1,4 @@
+// D:\WEBDEV\MajorProject\client\src\lib\loaders.js
 import { defer } from "react-router-dom";
 import apiRequest from "./apiRequest";
 
