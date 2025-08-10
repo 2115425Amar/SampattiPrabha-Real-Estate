@@ -10,8 +10,7 @@ import { SocketContext } from "../../context/SocketContext";
 function Chat({ chats, autoOpenUserId }) {
   const [chat, setChat] = useState(null);
   const { currentUser } = useContext(AuthContext);
-  const { socket } = useContext(SocketContext); 
-
+  const { socket } = useContext(SocketContext);
 
   const decrease = useNotificationStore((state) => state.decrease);
 
@@ -21,10 +20,10 @@ function Chat({ chats, autoOpenUserId }) {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chat]);
 
-  // Auto-open chat with specific user if autoOpenUserId is provided
+  // Auto-open chat with specific user if autoOpenUserId is provided from profilepage 
   useEffect(() => {
     if (autoOpenUserId && chats) {
-      const targetChat = chats.find(c => c.receiver.id === autoOpenUserId);
+      const targetChat = chats.find((c) => c.receiver.id === autoOpenUserId);
       if (targetChat) {
         handleOpenChat(targetChat.id, targetChat.receiver);
       }
@@ -54,16 +53,15 @@ function Chat({ chats, autoOpenUserId }) {
       const res = await apiRequest.post("/messages/" + chat.id, { text });
       setChat((prev) => ({ ...prev, messages: [...prev.messages, res.data] }));
       e.target.reset();
-        socket.emit("sendMessage", {
-          receiverId: chat.receiver.id,
-          data: res.data,
-        });
+      socket.emit("sendMessage", {
+        receiverId: chat.receiver.id,
+        data: res.data,
+      });
     } catch (err) {
       console.log(err);
     }
   };
 
-  
   useEffect(() => {
     const read = async () => {
       try {
@@ -86,7 +84,7 @@ function Chat({ chats, autoOpenUserId }) {
     };
   }, [socket, chat]);
 
-  console.log(chats);
+  // console.log(chats);
   return (
     <div className="chat">
       <div className="messages">

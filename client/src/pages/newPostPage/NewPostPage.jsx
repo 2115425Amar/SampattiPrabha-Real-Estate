@@ -19,7 +19,7 @@ function NewPostPage() {
     const formData = new FormData(e.target);
     const inputs = Object.fromEntries(formData);
 
-    console.log(inputs);
+    // console.log(inputs);
 
     try {
       const res = await apiRequest.post("/posts", {
@@ -49,7 +49,7 @@ function NewPostPage() {
       });
 
       navigate("/" + res.data.id);
-      console.log(res);
+      // console.log(res);
     } catch (err) {
       console.log(err);
       setError(err);

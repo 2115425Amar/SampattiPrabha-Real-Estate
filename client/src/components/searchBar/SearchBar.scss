@@ -69,19 +69,14 @@
         }
 
         button{
+            width: 100px;
+            padding: 17px;
             border: none;
             cursor: pointer;
             background-color: #fece51;
-            flex:1;
-
-            @include sm{
-                padding: 10px;
-            }
-
             img{
-                // margin-top: 20px;
-                width: 60px;
-                // height:100%;
+                width: 24px;
+                height: 24px;
             }
         }
         
