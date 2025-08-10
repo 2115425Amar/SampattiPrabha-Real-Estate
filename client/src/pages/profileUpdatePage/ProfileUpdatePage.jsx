@@ -29,7 +29,10 @@ function ProfileUpdatePage() {
       // console.log(res.data);
       navigate("/profile");
     } catch (err) {
-      console.error("Error updating profile:", err.response?.data || err.message);
+      console.error(
+        "Error updating profile:",
+        err.response?.data || err.message
+      );
       setError(err.response.data.message);
     }
   };
@@ -73,11 +76,11 @@ function ProfileUpdatePage() {
         />
         <CloudinaryUploadWidget
           uwConfig={{
-            cloudName: "lamadev",
-            uploadPreset: "estate",
+            cloudName: "ddzjywapc",
+            uploadPreset: "sampattiprabha",
+            folder: "posts",
             multiple: false,
             maxImageFileSize: 2000000,
-            folder: "avatars",
           }}
           setState={setAvatar}
         />

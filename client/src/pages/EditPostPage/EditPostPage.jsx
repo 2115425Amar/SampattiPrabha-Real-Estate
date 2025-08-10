@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import CloudinaryUploadWidget from "../../components/uploadWidget/UploadWidget";
 import apiRequest from "../../lib/apiRequest";
 import { useNavigate, useParams } from "react-router-dom";
-import "./EditPostPage.scss"; // Same SCSS rules as NewPostPage.scss
+import "./EditPostPage.scss"; 
 
 function EditPostPage({ isEdit }) {
   const [value, setValue] = useState("");
@@ -35,7 +35,7 @@ function EditPostPage({ isEdit }) {
           size: post.postDetail.size,
           school: post.postDetail.school,
           bus: post.postDetail.bus,
-          restaurant: post.postDetail.restaurant
+          restaurant: post.postDetail.restaurant,
         });
         setValue(post.postDetail.desc);
         setImages(post.images);
@@ -48,13 +48,16 @@ function EditPostPage({ isEdit }) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-
   const handleRemoveImage = async (index, img) => {
+    const confirmed = window.confirm("Are you sure you want to remove this image?");
+    if(!confirmed){
+      return;
+    }
     try {
       if (img.public_id) {
         await apiRequest.delete(`/images/${img.public_id}`);
       }
-      setImages(prev => prev.filter((_, i) => i !== index));
+      setImages((prev) => prev.filter((img, i) => i !== index));
     } catch (err) {
       console.error("Failed to delete image from Cloudinary", err);
     }
@@ -69,7 +72,7 @@ function EditPostPage({ isEdit }) {
           price: parseInt(formData.price),
           bedroom: parseInt(formData.bedroom),
           bathroom: parseInt(formData.bathroom),
-          images
+          images,
         },
         postDetail: {
           desc: value,
@@ -79,10 +82,9 @@ function EditPostPage({ isEdit }) {
           size: parseInt(formData.size),
           school: parseInt(formData.school),
           bus: parseInt(formData.bus),
-          restaurant: parseInt(formData.restaurant)
-        }
+          restaurant: parseInt(formData.restaurant),
+        },
       };
-
       if (isEdit) {
         await apiRequest.put(`/posts/${id}`, payload);
         navigate(`/` + id);
@@ -103,15 +105,31 @@ function EditPostPage({ isEdit }) {
           <form onSubmit={handleSubmit}>
             <div className="item">
               <label htmlFor="title">Title</label>
-              <input id="title" name="title" value={formData.title || ""} onChange={handleChange} />
+              <input
+                id="title"
+                name="title"
+                value={formData.title || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="price">Price</label>
-              <input id="price" name="price" type="number" value={formData.price || ""} onChange={handleChange} />
+              <input
+                id="price"
+                name="price"
+                type="number"
+                value={formData.price || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="address">Address</label>
-              <input id="address" name="address" value={formData.address || ""} onChange={handleChange} />
+              <input
+                id="address"
+                name="address"
+                value={formData.address || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item description">
               <ReactQuill theme="snow" value={value} onChange={setValue} />
@@ -119,34 +137,69 @@ function EditPostPage({ isEdit }) {
             </div>
             <div className="item">
               <label htmlFor="city">City</label>
-              <input id="city" name="city" value={formData.city || ""} onChange={handleChange} />
+              <input
+                id="city"
+                name="city"
+                value={formData.city || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="bedroom">Bedroom</label>
-              <input id="bedroom" name="bedroom" type="number" value={formData.bedroom || ""} onChange={handleChange} />
+              <input
+                id="bedroom"
+                name="bedroom"
+                type="number"
+                value={formData.bedroom || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="bathroom">Bathroom</label>
-              <input id="bathroom" name="bathroom" type="number" value={formData.bathroom || ""} onChange={handleChange} />
+              <input
+                id="bathroom"
+                name="bathroom"
+                type="number"
+                value={formData.bathroom || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="latitude">Latitude</label>
-              <input id="latitude" name="latitude" value={formData.latitude || ""} onChange={handleChange} />
+              <input
+                id="latitude"
+                name="latitude"
+                value={formData.latitude || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="longitude">Longitude</label>
-              <input id="longitude" name="longitude" value={formData.longitude || ""} onChange={handleChange} />
+              <input
+                id="longitude"
+                name="longitude"
+                value={formData.longitude || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label>Type</label>
-              <select name="type" value={formData.type || ""} onChange={handleChange}>
+              <select
+                name="type"
+                value={formData.type || ""}
+                onChange={handleChange}
+              >
                 <option value="rent">Rent</option>
                 <option value="buy">Buy</option>
               </select>
             </div>
             <div className="item">
               <label>Property</label>
-              <select name="property" value={formData.property || ""} onChange={handleChange}>
+              <select
+                name="property"
+                value={formData.property || ""}
+                onChange={handleChange}
+              >
                 <option value="apartment">Apartment</option>
                 <option value="house">House</option>
                 <option value="condo">Condo</option>
@@ -155,7 +208,11 @@ function EditPostPage({ isEdit }) {
             </div>
             <div className="item">
               <label htmlFor="utilities">Utilities Policy</label>
-              <select name="utilities" value={formData.utilities || ""} onChange={handleChange}>
+              <select
+                name="utilities"
+                value={formData.utilities || ""}
+                onChange={handleChange}
+              >
                 <option value="owner">Owner is responsible</option>
                 <option value="tenant">Tenant is responsible</option>
                 <option value="shared">Shared</option>
@@ -163,64 +220,86 @@ function EditPostPage({ isEdit }) {
             </div>
             <div className="item">
               <label htmlFor="pet">Pet Policy</label>
-              <select name="pet" value={formData.pet || ""} onChange={handleChange}>
+              <select
+                name="pet"
+                value={formData.pet || ""}
+                onChange={handleChange}
+              >
                 <option value="allowed">Allowed</option>
                 <option value="not-allowed">Not Allowed</option>
               </select>
             </div>
             <div className="item">
               <label htmlFor="income">Income Policy</label>
-              <input id="income" name="income" value={formData.income || ""} onChange={handleChange} />
+              <input
+                id="income"
+                name="income"
+                value={formData.income || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="size">Total Size</label>
-              <input id="size" name="size" type="number" value={formData.size || ""} onChange={handleChange} />
+              <input
+                id="size"
+                name="size"
+                type="number"
+                value={formData.size || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="school">School</label>
-              <input id="school" name="school" type="number" value={formData.school || ""} onChange={handleChange} />
+              <input
+                id="school"
+                name="school"
+                type="number"
+                value={formData.school || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="bus">Bus</label>
-              <input id="bus" name="bus" type="number" value={formData.bus || ""} onChange={handleChange} />
+              <input
+                id="bus"
+                name="bus"
+                type="number"
+                value={formData.bus || ""}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="restaurant">Restaurant</label>
-              <input id="restaurant" name="restaurant" type="number" value={formData.restaurant || ""} onChange={handleChange} />
+              <input
+                id="restaurant"
+                name="restaurant"
+                type="number"
+                value={formData.restaurant || ""}
+                onChange={handleChange}
+              />
             </div>
-            <button className="sendButton">{isEdit ? "Update Post" : "Add Post"}</button>
+            <button className="sendButton">
+              {isEdit ? "Update Post" : "Add Post"}
+            </button>
             {error && <span>{error}</span>}
           </form>
         </div>
       </div>
 
-      {/* <div className="sideContainer">
+      <div className="sideContainer">
         {images.map((img, index) => (
-          <img key={index} src={img} alt="preview" />
+          <div key={index}>
+            <img src={typeof img === "string" ? img : img.url} alt="preview" />
+            <button type="button" onClick={() => handleRemoveImage(index, img)}>
+              Remove
+            </button>
+          </div>
         ))}
         <CloudinaryUploadWidget
           uwConfig={{
             multiple: true,
-            cloudName: "lamadev",
-            uploadPreset: "estate",
-            folder: "posts",
-          }}
-          setState={setImages}
-        />
-      </div> */}
-
-      <div className="sideContainer">
-       {images.map((img, index) => (
-  <div key={index}>
-    <img src={typeof img === "string" ? img : img.url} alt="preview" />
-    <button type="button" onClick={() => handleRemoveImage(index, img)}>Remove</button>
-  </div>
-))}
-        <CloudinaryUploadWidget
-          uwConfig={{
-            multiple: true,
-            cloudName: "lamadev",
-            uploadPreset: "estate",
+            cloudName: "ddzjywapc",
+            uploadPreset: "sampattiprabha",
             folder: "posts",
           }}
           setState={setImages}

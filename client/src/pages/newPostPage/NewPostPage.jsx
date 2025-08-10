@@ -171,8 +171,8 @@ function NewPostPage() {
         <CloudinaryUploadWidget
           uwConfig={{
             multiple: true,
-            cloudName: "lamadev",
-            uploadPreset: "estate",
+            cloudName: "ddzjywapc",
+            uploadPreset: "sampattiprabha",
             // multiple:false,
             // maxImageFileSize:2000000,
             folder: "posts",

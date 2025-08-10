@@ -1,0 +1,11 @@
+title,price,images,address,city,bedroom,bathroom,latitude,longitude,type,property,category,userId,description,size,school,bus,restaurant
+2 BHK Apartment in Sector 62,6500000,"['img1.jpg']",Sector 62,Noida,2,2,28.6289,77.3645,rent,apartment,Mid-range,66c4fbf9a20b1658c9bd38fb,Spacious 2 BHK near metro station,1100,Delhi Public School,4,2,5
+3 BHK Apartment in Sector 76,9200000,"['img2.jpg']",Sector 76,Noida,3,3,28.5894,77.3726,rent,apartment,Mid-range,66c4fbf9a20b1658c9bd38fb,Premium 3 BHK with park view,1450,4,2,5
+2 BHK Builder Floor in Sector 137,5800000,"['img3.jpg']",Sector 137,Noida,2,2,28.5645,77.391,rent,house,Mid-range,66c4fbf9a20b1658c9bd38fb,Affordable 2 BHK near expressway,1050,4,2,5
+4 BHK Villa in Sector 108,18500000,"['img4.jpg']",Sector 108,Noida,4,5,28.5611,77.3508,rent,house,Luxury,66c4fbf9a20b1658c9bd38fb,Luxury 4 BHK villa with private lawn,3200,4,2,5
+1 BHK Studio Apartment in Sector 62,3800000,"['img5.jpg']",Sector 62,Noida,1,1,28.6289,77.3645,rent,apartment,Budget,66c4fbf9a20b1658c9bd38fb,Compact studio apartment ideal for singles,550,4,2,5
+3 BHK Apartment in Sector 78,9700000,"['img6.jpg']",Sector 78,Noida,3,3,28.5905,77.3732,rent,apartment,Mid-range,66c4fbf9a20b1658c9bd38fb,Modern 3 BHK with clubhouse access,1500,4,2,5
+2 BHK Apartment in Sector 50,8400000,"['img7.jpg']",Sector 50,Noida,2,2,28.5835,77.357,rent,apartment,Mid-range,66c4fbf9a20b1658c9bd38fb,Spacious 2 BHK in prime location,1250,4,2,5
+3 BHK Builder Floor in Sector 41,10200000,"['img8.jpg']",Sector 41,Noida,3,3,28.5704,77.3432,rent,house,Luxury,66c4fbf9a20b1658c9bd38fb,Beautiful builder floor with parking,1600,4,2,5
+2 BHK Apartment in Sector 75,7800000,"['img10.jpg']",Sector 75,Noida,2,2,28.5846,77.3689,rent,apartment,Mid-range,66c4fbf9a20b1658c9bd38fb,Well-connected 2 BHK with amenities,1200,4,2,5
+5 BHK Villa in Sector 44,24500000,"['img9.jpg']",Sector 44,Noida,5,6,28.5743,77.3401,rent,house,Luxury,66c4fbf9a20b1658c9bd38fb,Ultra-luxury villa with swimming pool,4000,4,2,5
