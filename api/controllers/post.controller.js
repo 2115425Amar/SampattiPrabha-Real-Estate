@@ -22,8 +22,7 @@ export const getPosts = async (req, res) => {
       },
     });
     res.status(200).json(posts);
-  } 
-  catch (err) {
+  } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to get posts" });
   }
@@ -77,7 +76,7 @@ export const getPost = async (req, res) => {
         },
       });
     }
-    res.status(200).json({ ...post, isSaved: !!saved }); 
+    res.status(200).json({ ...post, isSaved: !!saved });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to get post" });
@@ -90,15 +89,14 @@ export const addPost = async (req, res) => {
   const body = req.body;
   const tokenUserId = req.userId;
 
-// console.log("Request Body:", body);
-// console.log("Formatted Data:", {
-//   ...body.postData,
-//   userId: tokenUserId,
-//   postDetail: {
-//     create: body.postDetail,
-//   },
-// });
-
+  // console.log("Request Body:", body);
+  // console.log("Formatted Data:", {
+  //   ...body.postData,
+  //   userId: tokenUserId,
+  //   postDetail: {
+  //     create: body.postDetail,
+  //   },
+  // });
 
   try {
     const newPost = await prisma.post.create({
@@ -113,7 +111,7 @@ export const addPost = async (req, res) => {
     res.status(200).json(newPost);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Failed to create post" ,err});
+    res.status(500).json({ message: "Failed to create post", err });
   }
 };
 
@@ -125,15 +123,15 @@ export const updatePost = async (req, res) => {
     const tokenUserId = req.userId;
 
     const existingPost = await prisma.post.findUnique({
-      where : {id:postId}
+      where: { id: postId },
     });
 
-    if(!existingPost){
-      return res.status(404).json({message: "Post not found"});
+    if (!existingPost) {
+      return res.status(404).json({ message: "Post not found" });
     }
 
-    if(existingPost.userId !== tokenUserId){
-      return res.status(404).json({message: "Not authorized"});
+    if (existingPost.userId !== tokenUserId) {
+      return res.status(404).json({ message: "Not authorized" });
     }
 
     const updated = await prisma.post.update({
@@ -159,10 +157,10 @@ export const updatePost = async (req, res) => {
             size: req.body.postDetail.size,
             school: req.body.postDetail.school,
             bus: req.body.postDetail.bus,
-            restaurant: req.body.postDetail.restaurant
-          }
-        }
-      }
+            restaurant: req.body.postDetail.restaurant,
+          },
+        },
+      },
     });
     res.status(200).json(updated);
   } catch (err) {
@@ -170,7 +168,6 @@ export const updatePost = async (req, res) => {
     res.status(500).json({ message: "Failed to update post" });
   }
 };
-
 
 export const deletePost = async (req, res) => {
   const id = req.params.id;
@@ -202,6 +199,7 @@ const categorizePrice = (price) => {
 };
 
 export const bulkUploadPosts = async (req, res) => {
+  let filePath;
   try {
     if (!req.file) return res.status(400).json({ message: "No file uploaded" });
 
@@ -257,11 +255,14 @@ export const bulkUploadPosts = async (req, res) => {
         })
       )
     );
-
-    fs.unlinkSync(filePath); // cleanup
+    // fs.unlinkSync(filePath); // cleanup
     res.status(200).json({ message: `${postsData.length} posts uploaded successfully` });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Bulk upload failed" });
+  } finally {
+    if (filePath && fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
   }
 };

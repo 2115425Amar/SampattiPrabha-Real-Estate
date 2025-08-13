@@ -4,35 +4,35 @@ A **production-ready real estate web platform** built using the MERN stack. This
 
 ---
 
-### 🚀 **Key Features**
+###  **Key Features**
 
-* 🔷 **Responsive Frontend**
+*  **Responsive Frontend**
   Developed with **React.js** and styled using **CSS**, the UI is responsive and mobile-friendly. **Context API** and **Zustand** manage global state seamlessly.
 
-* 🧠 **Backend Architecture**
+*  **Backend Architecture**
   The backend uses **Node.js** and **Express.js** with **Prisma ORM** to handle MongoDB operations with type safety and schema consistency.
 
-* 🔐 **Authentication & Authorization**
+*  **Authentication & Authorization**
   User sessions are managed using **JWTs** and **HTTP-only Cookies**, with protected routes for authenticated access.
 
-* 💬 **Real-Time Messaging**
+*  **Real-Time Messaging**
   Implemented **Socket.io** for instant communication between buyers and sellers, complete with typing indicators and auto-scroll via `useRef`.
 
-* 🧭 **Client-Side Routing**
+*  **Client-Side Routing**
   **React Router DOM** enables intuitive navigation, including **protected routes** for private pages.
 
-* 🏠 **Property Listings CRUD**
+*  **Property Listings CRUD**
   Users can **Create, Read, Update, and Delete** property listings with image uploads and metadata.
 
-* 📸 **Image Upload Support**
+*  **Image Upload Support**
   Integrated with **Cloudinary** (or similar service) for efficient property image handling.
 
-* 🗺️ **Interactive Maps**
+*  **Interactive Maps**
   **React Leaflet** shows property locations on maps to boost user experience.
 
 ---
 
-### 🛠 **Tech Stack**
+###  **Tech Stack**
 
 * **Frontend:** React.js, CSS, Context API, Zustand, React Router DOM
 * **Backend:** Node.js, Express.js, Prisma ORM
@@ -55,7 +55,7 @@ A **production-ready real estate web platform** built using the MERN stack. This
 
 ---
 
-<!-- ### ✅ Possible Add-Ons / Future Enhancements
+<!-- ###  Possible Add-Ons / Future Enhancements
 
 * Admin dashboard for managing users and listings
 * Full-text search with MongoDB Atlas or Algolia
@@ -65,10 +65,8 @@ A **production-ready real estate web platform** built using the MERN stack. This
 
 
 ![alt text](ER-DIAGRAM/1.png)
-
 <!-- ------------------------------------ -->
 ![alt text](ER-DIAGRAM/2.png)
-
 ![alt text](ER-DIAGRAM/01.png)
 ![alt text](ER-DIAGRAM/02.png)
 <!-- ![alt text](ER-DIAGRAM/b.png) -->
@@ -76,7 +74,6 @@ A **production-ready real estate web platform** built using the MERN stack. This
 <!-- ![alt text](ER-DIAGRAM/d.png) -->
 ![alt text](ER-DIAGRAM/03.png)
 ![alt text](ER-DIAGRAM/04.png)
-
 ![alt text](ER-DIAGRAM/e.png)
 ![alt text](ER-DIAGRAM/f.png)
 <!-- ![alt text](ER-DIAGRAM/g.png) -->
