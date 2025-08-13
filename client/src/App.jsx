@@ -27,6 +27,7 @@ function App() {
         {
           path: "/",
           element: <Hpages />,
+          loader: listPageLoader,
         },
         {
           path: "/list",
@@ -98,5 +99,3 @@ function App() {
 }
 
 export default App;
-
-// test

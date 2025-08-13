@@ -3,10 +3,18 @@ import SearchBar from "../../components/searchBar/SearchBar";
 import "./Hpages.scss";
 // import { AuthContext } from "../../context/AuthContext";
 
+import "../listPage/ListPage.scss";
+// import { listData } from '../../lib/Dummydata';
+import Filter from "../../components/filter/Filter";
+import Card from "../../components/card/Card";
+import Map from "../../components/map/Map";
+import { Await, useLoaderData } from "react-router-dom";
+import { Suspense } from "react";
+
 function HomePage() {
   // const {currentUser} = useContext(AuthContext)
   // console.log(currentUser);
-
+  const data = useLoaderData();
   return (
     <div>
       <div className="homePage">
@@ -44,6 +52,28 @@ function HomePage() {
         </div>
       </div>
       {/* <ListPage/> */}
+      <hr />
+      <br />
+
+      <div className="listPage">
+        <div className="listContainer">
+          <div className="wrapper">
+            <Filter />
+            <Suspense fallback={<p>Loading...</p>}>
+              <Await
+                resolve={data.postResponse}
+                errorElement={<p>Error while loading posts!</p>}
+              >
+                {(postResponse) =>
+                  postResponse.data.map((post) => (
+                    <Card key={post.id} item={post} />
+                  ))
+                }
+              </Await>
+            </Suspense>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
