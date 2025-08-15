@@ -20,7 +20,8 @@ app.use(cookieParser());
 
 //cross-original policy
 app.use(cors({
-    origin: process.env.CLIENT_URL, // Ensure this matches http://localhost:5173
+    // origin: process.env.CLIENT_URL, // Ensure this matches http://localhost:5173
+    origin:true,
     credentials: true, // Allow cookies
 }));
 
