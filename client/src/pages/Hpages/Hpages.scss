@@ -82,3 +82,28 @@
     }
   }
 }
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  button {
+    margin: 0 5px;
+    padding: 6px 12px;
+    border: none;
+    background-color: #eee;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &.active {
+      background-color: #007bff;
+      color: white;
+    }
+
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+}

@@ -2,19 +2,22 @@
 import SearchBar from "../../components/searchBar/SearchBar";
 import "./Hpages.scss";
 // import { AuthContext } from "../../context/AuthContext";
-
 import "../listPage/ListPage.scss";
 // import { listData } from '../../lib/Dummydata';
 import Filter from "../../components/filter/Filter";
 import Card from "../../components/card/Card";
-import Map from "../../components/map/Map";
+// import Map from "../../components/map/Map";
 import { Await, useLoaderData } from "react-router-dom";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 
 function HomePage() {
   // const {currentUser} = useContext(AuthContext)
   // console.log(currentUser);
   const data = useLoaderData();
+  //pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6; //number of cards per page
+
   return (
     <div>
       <div className="homePage">
@@ -64,11 +67,34 @@ function HomePage() {
                 resolve={data.postResponse}
                 errorElement={<p>Error while loading posts!</p>}
               >
-                {(postResponse) =>
-                  postResponse.data.map((post) => (
-                    <Card key={post.id} item={post} />
-                  ))
-                }
+                {(postResponse) => {
+                  const allPosts = postResponse.data;
+                  // Calculate posts for current page
+                  const indexOfLastPost = currentPage * postsPerPage;
+                  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+                  const currentPosts = allPosts.slice(indexOfFirstPost,indexOfLastPost);
+                  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+                  return (
+                    <>
+                      {currentPosts.map((post) => (
+                        <Card key={post.id} item={post} />
+                      ))}
+
+                      {/* Pagination Controls */}
+                      <div className="pagination">
+                        {Array.from({ length: totalPages }, (_, i) => (
+                          <button
+                            key={i + 1}
+                            onClick={() => setCurrentPage(i + 1)}
+                            className={currentPage === i + 1 ? "active" : ""}
+                          >
+                            {i + 1}
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  );
+                }}
               </Await>
             </Suspense>
           </div>
