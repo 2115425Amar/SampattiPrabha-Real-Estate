@@ -3,6 +3,7 @@ import prisma from "../lib/prisma.js"; //model import
 import fs from "fs";
 import path from "path";
 import XLSX from "xlsx";
+import { generateDescription } from "../lib/gemini.js";
 
 export const getPosts = async (req, res) => {
   const query = req.query;
@@ -203,7 +204,7 @@ export const bulkUploadPosts = async (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ message: "No file uploaded" });
 
-    const filePath = path.join(process.cwd(), req.file.path);
+    filePath = path.join(process.cwd(), req.file.path);
     const workbook = XLSX.readFile(filePath);
     const sheetName = workbook.SheetNames[0];
     const jsonData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
@@ -221,30 +222,40 @@ export const bulkUploadPosts = async (req, res) => {
     // Uses categorizePrice to classify into "Budget", "Mid-range", "Luxury".
     // Adds the logged-in user’s userId from token.
 
-    const postsData = jsonData.map((row) => ({
-      title: row.title,
-      price: parseInt(row.price, 10),
-      images: row.images ? row.images.split(",") : [],
-      address: row.address,
-      city: row.city,
-      bedroom: parseInt(row.bedroom, 10),
-      bathroom: parseInt(row.bathroom, 10),
-      latitude: String(row.latitude),
-      longitude: String(row.longitude),
-      type: row.type?.toLowerCase(),
-      property: row.property?.toLowerCase(),
-      postDetail: {
-        create: {
-          desc: row.description || "",
-          size: parseInt(row.size, 10) || null,
-          school: row.school || null,
-          bus: row.bus || null,
-          restaurant: row.restaurant || null,
-        },
-      },
-      category: categorizePrice(parseInt(row.price, 10)),
-      userId: tokenUserId,
-    }));
+    const postsData = await Promise.all(
+      jsonData.map(async (row) => {
+        // Generate description if missing
+        let description = row.description;
+        if (!description || description.trim() === "") {
+          description = await generateDescription(row);
+        }
+        return {
+          title: row.title,
+          price: parseInt(row.price, 10),
+          images: row.images ? row.images.split(",") : [],
+          address: row.address,
+          city: row.city,
+          bedroom: parseInt(row.bedroom, 10),
+          bathroom: parseInt(row.bathroom, 10),
+          latitude: String(row.latitude),
+          longitude: String(row.longitude),
+          type: row.type?.toLowerCase(),
+          property: row.property?.toLowerCase(),
+          postDetail: {
+            create: {
+              // desc: row.description || "",
+              desc: description,
+              size: parseInt(row.size, 10) || null,
+              school: row.school || null,
+              bus: row.bus || null,
+              restaurant: row.restaurant || null,
+            },
+          },
+          category: categorizePrice(parseInt(row.price, 10)),
+          userId: tokenUserId,
+        };
+      })
+    );
 
     // prisma.$transaction executes all inserts in one DB transaction.
     // If any insert fails → the whole batch is rolled back.

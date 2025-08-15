@@ -24,6 +24,9 @@ A **production-ready real estate web platform** built using the MERN stack. This
 *  **Property Listings CRUD**
   Users can **Create, Read, Update, and Delete** property listings with image uploads and metadata.
 
+*  **Auto-Generated Descriptions with Gemini Pro API**
+  When performing bulk property uploads via CSV/XLSX, any listing without a description automatically gets one generated using Google's Gemini Pro API. This ensures every property is presented professionally, even if details were missing during upload.
+
 *  **Image Upload Support**
   Integrated with **Cloudinary** (or similar service) for efficient property image handling.
 
@@ -41,6 +44,7 @@ A **production-ready real estate web platform** built using the MERN stack. This
 * **Real-Time:** Socket.io
 * **File Handling:** Cloudinary (for image uploads)
 * **Maps:** React Leaflet
+* **AI Integration:** Gemini Pro API (auto-generate missing property descriptions during bulk uploads)
 * **Utilities:** useRef, axios, bcrypt, dotenv
 
 ---
