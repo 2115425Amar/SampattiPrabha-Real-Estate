@@ -10,7 +10,8 @@ const server = http.createServer(app);
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.CLIENT_URL,
+  // origin: process.env.CLIENT_URL,
+  origin:true,
   methods: ["GET", "POST"],
   credentials: true
 }));
