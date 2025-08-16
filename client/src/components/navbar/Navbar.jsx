@@ -25,7 +25,7 @@ function Navbar() {
         <a href="/" className="logo">
           <img src="/logo1.jpeg" alt="" />
            {/* <img src="/SP1.webp" alt="" /> */}
-          <span>SampattiPrabha</span>
+          {/* <span>SampattiPrabha</span> */}
         </a>
         <a href="/">Home</a>
         <a href="/list">List</a>
@@ -65,7 +65,7 @@ function Navbar() {
           <a href="/list">List</a>
           {/* <a href="/">About</a> */}
           <a href="/contact">Contact</a>
-          <a href="/">Agents</a>
+          <a href="/agents">Agents</a>
           <a href="/login">Sign in</a>
           <a href="/register">Sign up</a>
         </div>

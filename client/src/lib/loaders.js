@@ -26,6 +26,11 @@ export const profilePageLoader = async () => {
 };
 
 export const agentPageLoader = async () => {
-  const res =  apiRequest("/users/admins");
-  return res;
+  const agentsPromise = apiRequest("/users/admins");
+  const chatPromise = apiRequest("/chats");
+  return defer({
+    agentsResponse: agentsPromise,
+    chatResponse: chatPromise,
+  });
+  
 };
