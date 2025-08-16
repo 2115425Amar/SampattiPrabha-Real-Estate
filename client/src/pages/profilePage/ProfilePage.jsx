@@ -7,6 +7,8 @@ import apiRequest from "../../lib/apiRequest";
 import Chat from "../../components/chat/Chat";
 // import Card from "../../components/card/Card";
 
+
+
 function ProfilePage() {
   const data = useLoaderData();
   const [searchParams] = useSearchParams();

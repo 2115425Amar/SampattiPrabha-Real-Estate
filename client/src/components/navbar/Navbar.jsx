@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -11,7 +11,13 @@ function Navbar() {
   const fetch = useNotificationStore((state) => state.fetch);
   const number = useNotificationStore((state) => state.number);
 
-  if(currentUser) fetch();
+  // if(currentUser) fetch();
+  useEffect(() => {
+  if (currentUser) {
+    fetch();
+  }
+}, [currentUser, fetch]);
+
 
   return (
     <nav>
@@ -24,8 +30,8 @@ function Navbar() {
         <a href="/">Home</a>
         <a href="/list">List</a>
         {/* <a href="/">About</a> */}
-        <a href="/contact">Contact</a>
-        <a href="/">Agents</a>
+        <a href="/agents">Agents</a>
+        <a href="/contact">Founders</a>
       </div>
 
       <div className="right">
@@ -59,7 +65,7 @@ function Navbar() {
           <a href="/list">List</a>
           {/* <a href="/">About</a> */}
           <a href="/contact">Contact</a>
-          {/* <a href="/">Agents</a> */}
+          <a href="/">Agents</a>
           <a href="/login">Sign in</a>
           <a href="/register">Sign up</a>
         </div>

@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 
 export const getUsers = async (req, res) => {
     try {
-        // console.log("get user kaam kar raha hai");
         const users = await prisma.user.findMany();
         res.status(200).json(users);
     } catch (err) {
@@ -22,6 +21,26 @@ export const getUser = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: "Failed to get user" });
+    }
+}
+
+export const getAdmins = async (req, res) => {
+    try {
+        const admins = await prisma.user.findMany({
+            where: { isAdmin: true },
+            // select: {
+            //     id: true,
+            //     username: true,
+            //     email: true,
+            //     avatar: true,
+            //     createdAt: true,
+            //     isAdmin: true
+            // }
+        });
+        res.status(200).json(admins);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Failed to get admin users' });
     }
 }
 
@@ -126,7 +145,7 @@ export const savePost = async (req, res) => {
 
 
 export const profilePosts = async (req, res) => {
-    const tokenUserId = req.userId;  
+    const tokenUserId = req.userId;
     if (!tokenUserId) {
         return res.status(403).json({ message: "Not Authorized" });
     }

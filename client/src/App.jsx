@@ -10,6 +10,7 @@ import UpdatePassword from "./pages/updatePassword/UpdatePassword";
 import ProfileUpdatePage from "./pages/profileUpdatePage/ProfileUpdatePage";
 import NewPostPage from "./pages/newPostPage/NewPostPage";
 import {
+  agentPageLoader,
   listPageLoader,
   profilePageLoader,
   singlePageLoader,
@@ -17,6 +18,7 @@ import {
 import Contact from "./pages/Contact/Contact";
 import BulkUploadForm from "./pages/BulkUploadForm/BulkUploadForm";
 import EditPostPage from "./pages/EditPostPage/EditPostPage";
+import Agents from "./pages/Agents/Agents";
 
 function App() {
   const router = createBrowserRouter([
@@ -56,6 +58,11 @@ function App() {
         {
           path: "/contact",
           element: <Contact />,
+        },
+        {
+          path: "/agents",
+          element: <Agents />,
+          loader: agentPageLoader,
         },
       ],
     },

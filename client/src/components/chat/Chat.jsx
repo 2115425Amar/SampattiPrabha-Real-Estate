@@ -20,7 +20,7 @@ function Chat({ chats, autoOpenUserId }) {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chat]);
 
-  // Auto-open chat with specific user if autoOpenUserId is provided from profilepage 
+  // Auto-open chat with specific user if autoOpenUserId is provided from profilepage
   useEffect(() => {
     if (autoOpenUserId && chats) {
       const targetChat = chats.find((c) => c.receiver.id === autoOpenUserId);
