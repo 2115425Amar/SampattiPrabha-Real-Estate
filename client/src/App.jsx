@@ -19,6 +19,7 @@ import Contact from "./pages/Contact/Contact";
 import BulkUploadForm from "./pages/BulkUploadForm/BulkUploadForm";
 import EditPostPage from "./pages/EditPostPage/EditPostPage";
 import Agents from "./pages/Agents/Agents";
+import SuperAdmin from "./pages/SuperAdmin/SuperAdmin";
 
 function App() {
   const router = createBrowserRouter([
@@ -59,11 +60,6 @@ function App() {
           path: "/contact",
           element: <Contact />,
         },
-        {
-          path: "/agents",
-          element: <Agents />,
-          loader: agentPageLoader,
-        },
       ],
     },
     {
@@ -91,6 +87,15 @@ function App() {
           path: "/edit/:id",
           element: <EditPostPage isEdit={true} />,
           loader: singlePageLoader, // preload data for edit
+        },
+        {
+          path: "/agents",
+          element: <Agents />,
+          loader: agentPageLoader,
+        },
+        {
+          path: "/superadmin",
+          element: <SuperAdmin />,
         },
       ],
     },

@@ -67,12 +67,20 @@ A **production-ready real estate web platform** built using the MERN stack. This
 * Advanced filtering/sorting by price, location, and features
 * Notifications using WebSockets or Push API -->
 
+![alt text](ER-DIAGRAM/overview.png)
+![alt text](ER-DIAGRAM/users.png)
+![alt text](ER-DIAGRAM/admins.png)
+![alt text](ER-DIAGRAM/superadmin.png)
+![alt text](ER-DIAGRAM/posts.png)
+
+
 
 ![alt text](ER-DIAGRAM/1.png)
 <!-- ------------------------------------ -->
 ![alt text](ER-DIAGRAM/2.png)
 ![alt text](ER-DIAGRAM/01.png)
 ![alt text](ER-DIAGRAM/02.png)
+![alt text](ER-DIAGRAM/n.png)
 <!-- ![alt text](ER-DIAGRAM/b.png) -->
 <!-- ![alt text](ER-DIAGRAM/c.png) -->
 <!-- ![alt text](ER-DIAGRAM/d.png) -->
@@ -88,6 +96,7 @@ A **production-ready real estate web platform** built using the MERN stack. This
 ![alt text](ER-DIAGRAM/l.png)
 <!-- update post -->
 ![alt text](ER-DIAGRAM/m.png)
+![alt text](ER-DIAGRAM/o.png)
 
 
 <!-- 

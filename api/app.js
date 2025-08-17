@@ -7,6 +7,7 @@ import testRoute from "./routes/test.route.js";
 import userRoute from "./routes/user.route.js";
 import chatRoute from "./routes/chat.route.js";
 import messageRoute from "./routes/message.route.js";
+import superadminRoute from "./routes/superadmin.route.js";
 import 'dotenv/config';
 
 const app = express();
@@ -35,6 +36,7 @@ app.use("/api/posts",postRoute);
 app.use("/api/users",userRoute);
 app.use("/api/chats",chatRoute);
 app.use("/api/messages",messageRoute);
+app.use("/api/superadmin", superadminRoute);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

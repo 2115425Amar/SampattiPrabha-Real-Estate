@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
@@ -48,7 +48,7 @@ function Login() {
     <div className="login">
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
-          <h1>Welcome back</h1>
+          <h1>Please Login</h1>
           <input name="username" required minLength={3} maxLength={20} type="text" placeholder="Username" />
           <input name="password" required type="password" placeholder="Password" />
           <button>Login</button>

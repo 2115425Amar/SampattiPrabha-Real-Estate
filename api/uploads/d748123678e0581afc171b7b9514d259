@@ -1,4 +1,0 @@
-title,price,category,images,address,city,bedroom,bathroom,latitude,longitude,type,property,desc,utilities,pet,income,size,school,bus,restaurant,userId
-"2 BHK Apartment in Sector 62",6500000,Luxury,"['img1.jpg']","Sector 62","Noida",2,2,"28.6289","77.3645",buy,apartment,"Spacious 2 BHK near metro station",,,,"1100",,,
-"3 BHK House in Indirapuram",8500000,Mid-range,"['img2.jpg','img3.jpg']","Indirapuram","Ghaziabad",3,3,"28.643","77.375",buy,house,"Large family home with garden","Electricity, Water","Allowed","No limit","1800",1,1,2,"66c4fbf9a20b1658c9bd38fb"
-"1 BHK Flat for Rent",15000,Budget,"['img4.jpg']","Sector 45","Noida",1,1,"28.5801","77.3345",rent,apartment,"Cozy 1 BHK near park","Water included","Not allowed","30,000/year","600",2,2,5,"66c4fbf9a20b1658c9bd38fb"

@@ -4,7 +4,7 @@ import "./Hpages.scss";
 // import { AuthContext } from "../../context/AuthContext";
 import "../listPage/ListPage.scss";
 // import { listData } from '../../lib/Dummydata';
-import Filter from "../../components/filter/Filter";
+// import Filter from "../../components/filter/Filter";
 import Card from "../../components/card/Card";
 // import Map from "../../components/map/Map";
 import { Await, useLoaderData } from "react-router-dom";
@@ -61,7 +61,12 @@ function HomePage() {
       <div className="listPage">
         <div className="listContainer">
           <div className="wrapper">
-            <Filter />
+            {/* <Filter /> */}
+            <br />
+            <br />
+            <br />
+            <br />
+            <hr />
             <Suspense fallback={<p>Loading...</p>}>
               <Await
                 resolve={data.postResponse}
