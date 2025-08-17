@@ -9,6 +9,9 @@ A **production-ready real estate web platform** built using the MERN stack. This
 *  **Responsive Frontend**
   Developed with **React.js** and styled using **CSS**, the UI is responsive and mobile-friendly. **Context API** and **Zustand** manage global state seamlessly.
 
+*  **User-Specific Recommendations (New Feature)**
+  Logged-in users receive personalized property recommendations based on their saved posts and browsing behavior. The backend aggregates saved posts and all available listings, sends the data to Gemini Pro API, and returns top matches displayed on the frontend.
+
 *  **Backend Architecture**
   The backend uses **Node.js** and **Express.js** with **Prisma ORM** to handle MongoDB operations with type safety and schema consistency.
 
