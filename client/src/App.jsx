@@ -20,6 +20,7 @@ import BulkUploadForm from "./pages/BulkUploadForm/BulkUploadForm";
 import EditPostPage from "./pages/EditPostPage/EditPostPage";
 import Agents from "./pages/Agents/Agents";
 import SuperAdmin from "./pages/SuperAdmin/SuperAdmin";
+import Recommendations from "./components/Recommendations/Recommendations";
 
 function App() {
   const router = createBrowserRouter([
@@ -96,6 +97,10 @@ function App() {
         {
           path: "/superadmin",
           element: <SuperAdmin />,
+        },
+        {
+          path: "/recommendations",
+          element: <Recommendations />,
         },
       ],
     },
